@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using MongoDB</title>
+  <link rel="stylesheet" href="css/vapor.min.css" />
+  <link rel="shortcut icon" href="img/question.png" type="image/x-icon" />
+
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" role="banner">
+          <img src="img/question.png" class="img-responsive rrounded" alt="Bootstrap Logo" width="50" />
+          <a class="navbar-brand" href="#">Langara Forum</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Member
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                  <li>
+                    <a class="dropdown-item" href="posts.html">Posts</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="filter.html">Filter Posts</a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="search.html">Search Posts</a>
+                  </li>
+
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="about.html">About Us</a>
+              </li>
+            </ul>
+
+            <div class="btn-group" role="group" aria-label="Registration and Login" id="aa">
+              <button class="btn btn-warning" id="register">
+                Register
+              </button>
+              <button class="btn btn-primary" id="login">
+                Log in
+              </button>
+            </div>
+
+
+          </div>
+        </div>
+      </nav>
+
+    </header>
+
+    <hr />
+    <main role="main">
+      <div class="row" id='registerForm'>
+        <div class="col-md-2 card mb-3"></div>
+        <div class="col-md-8 card mb-3">
+          <div class="card-header bg-info text-white h3">
+            Register
+          </div>
+          <div class="card-body">
+            <form action="register" method="post">
+              <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control-plaintext" id="email" name="email"
+                    placeholder="Enter your email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="password" name="password"
+                    title="Password must contain at least 8 characters" minlength="8" maxlength="20"
+                    class="form-control" placeholder="Enter Password" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="confirm" class="col-sm-2 col-form-label">Confirm Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="confirm" name="confirm"
+                    placeholder="Confirm your password" title="Password must contain at least 8 characters"
+                    minlength="8" maxlength="20">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <button type="clear" class="btn btn-primary" name='clear'>clear</button>
+                  <button type="submit" class="btn btn-primary" id='signup'>Register</button>
+
+                </div>
+                <div class="col-sm-8">
+                  <span id='signup-error'></span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-2 card mb-3"></div>
+      </div>
+      <div class="row" id='loginForm'>
+        <div class="col-md-2 card mb-3"></div>
+        <div class="col-md-8 card mb-3">
+          <div class="card-header bg-info text-white h3">
+            Login
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control-plaintext" id="email" placeholder="Enter your email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="password" placeholder="Type your password">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <button type="clear" class="btn btn-primary" name='clear'>clear</button>
+                  <button type="submit" class="btn btn-primary" id='signin'>Login</button>
+                </div>
+                <div class="col-sm-8">
+                  <span id='signin-error'></span>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+        <div class="col-md-2 card mb-3"></div>
+      </div>
+      <div class="row" id="welcome">
+        <div class="col-md-2 card mb-3"></div>
+        <div class="col-md-8 card mb-3">
+          <div class="card-header bg-primary text-white text-center">Langara Forum Etiquette Taran</div>
+          <div class="card-body">
+            <blockquote class="blockquote">
+              <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit </li>
+                <li>Vestibulum justo sem, dapibus vitae velit in, vehicula luctus sapien</li>
+                <li>Nulla porta turpis malesuada, sagittis ligula vel, consequat mauris</li>
+                <li>Fusce interdum quam imperdiet placerat lobortis</li>
+                <li>Phasellus facilisis efficitur fermentum. </li>
+                <li>In pellentesque dui eget aliquam mattis</li>
+                <li>Nulla nisl dolor, volutpat non hendrerit id, dignissim et mauris</li>
+                <li>Aliquam lacinia enim a lectus ultricies auctor</li>
+              </ul>
+              <footer class="blockquote-footer">Langara Forum</footer>
+
+            </blockquote>
+          </div>
+        </div>
+        <div class="col-md-2 card mb-3"></div>
+      </div>
+    </main>
+    <hr />
+    <footer class="text-center h3">
+      <kbd role="contentinfo">&copy;<span></span>. M. Bouguerra. All rights reserved</kbd>
+    </footer>
+
+
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/home.js"></script>
+</body>
+
+</html>

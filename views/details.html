@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using MongoDB</title>
+  <link rel="stylesheet" href="css/vapor.min.css" />
+  <link rel="shortcut icon" href="img/question.png" type="image/x-icon" />
+</head>
+
+<body>
+  <div class="container">
+    <header >
+      `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" role="banner">
+          <img src="img/question.png" class="img-responsive rrounded" alt="Bootstrap Logo" width="50" />
+          <a class="navbar-brand" href="#">Langara Forum</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Member
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      
+                  <li>
+                    <a class="dropdown-item" href="posts.html">Posts</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="filter.html">Filter Posts</a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="search,html">Search Posts</a>
+                  </li>
+                 
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="about.html">About Us</a>
+              </li>
+            </ul>
+            
+              <div class="btn-group" role="group" aria-label="Registration and Login" id="aa">
+              <button class="btn btn-warning" id="register">
+                Register
+              </button>
+              <button class="btn btn-primary" id="login">
+                Log in
+              </button></div>
+              
+            
+          </div>
+        </div>
+      </nav>
+    </header>
+    <hr />
+    <main role="main">
+      <div class="card">
+               <hr />
+        <div class="card-body row g-3 align-items-center">
+          <div class="col-md-2 card mb-3"></div>
+          <div class="col-md-8 card mb-3">
+            <form class="row bg-secondary" action="addPost" method="post">
+            <fieldset>
+              <legend class="text-center text-white h2">Post a Message</legend>
+              <div class="col-md-10">
+                <label for="topic" class="form-label h4">Topic</label>
+                <select data-val="true" name="topic" id="topic" class="form-select
+                  aria-label="Default select">
+                  <option selected>Select a topic</option>/>
+                  <option value="Programming">Programming</option>
+                  <option value="Networking">Networking</option>
+                  <option value="Security">Security</option>
+                  <option value="General">General</option>
+                </select>
+
+              </div>
+              <div class="col-md-10">
+                <label for="message" class="form-lable h4">Message</label>
+                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Type your message"
+                  maxlength="280" minlength="50"></textarea>
+              </div>
+              <div class="col-md-10">
+                <label for="postedBy" class="form-label h4">Posted By</label>
+                <input name="postedBy" id="postedBy" class="form-control"/>
+              </div>             
+              <div class="col-md-10">   
+                <div class="card-footer text-center">           
+                <a class="btn btn-success" href="posts.html">Back to Messages</a>
+              </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="col-md-2 card mb-3"></div>
+        </div>
+
+      </div>
+    </main>
+    <hr />
+    <footer class="text-center h3">
+      <kbd role="contentinfo">&copy;<span></span>. M. Bouguerra. All rights reserved</kbd>
+    </footer>
+
+
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/home.js"></script>
+</body>
+
+</html>

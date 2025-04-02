@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using MongoDB</title>
+  <link rel="stylesheet" href="css/vapor.min.css" />
+  <link rel="shortcut icon" href="img/question.png" type="image/x-icon" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" role="banner">
+          <img src="img/question.png" class="img-responsive rrounded" alt="Bootstrap Logo" width="50" />
+          <a class="navbar-brand" href="#">Langara Forum</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Member
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                  <li>
+                    <a class="dropdown-item" href="posts.html">Posts</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="filter.html">Filter Posts</a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="search,html">Search Posts</a>
+                  </li>
+
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="about.html">About Us</a>
+              </li>
+            </ul>
+
+            <div class="btn-group" role="group" aria-label="Registration and Login" id="aa">
+              <button class="btn btn-warning" id="register">
+                Register
+              </button>
+              <button class="btn btn-primary" id="login">
+                Log in
+              </button>
+            </div>
+
+
+          </div>
+        </div>
+      </nav>
+    </header>
+    <hr />
+    <main role="main">
+
+      <div class="row">
+        <div class="col-md-2 card mb-3"></div>
+
+        <div class="col-md-8 card mb-3">
+          <div class="card-header bg-primary text-white text-center">Weather Information</div>
+          <div class="card-body" id="info">
+            <table class="table table-striped table-bordered table-hover">
+              <tbody class="text-center h4">
+                <tr>
+                  <th>City/Town</th>
+                  <td id="city" class="btn btn-outline-primary">?</td>
+                </tr>
+                <tr>
+                  <th>Geolocation</th>
+                  <td class="btn btn-outline-success">(<span id="lat" title="latitude">? &nbsp;,&nbsp; ?</span><span
+                      id="lon" title="Longitude"></span>)</td>
+                </tr>
+                <tr>
+                  <th>Temperature</th>
+                  <td id="temp" class="btn btn-outline-warning"> ?<kbd>°C</kbd></td>
+                </tr>
+                <tr>
+                  <th>Temperature Range</th>
+                  <td class="btn btn-outline-warning">(<span id="min"
+                      title="Minimum Temperature">?</span>&nbsp;,&nbsp;</span><span id="max"
+                      title="Maximum Temperature">?</span>)</td>
+                </tr>
+                <tr>
+                  <th>Feels Like</th>
+                  <td id="feels" class="btn btn-outline-light">?</td>
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  <td id="description" class="btn btn-outline-info">?</td>
+                </tr>
+              </tbody>
+
+            </table>
+            <div class="card-footer text-center">
+              <div class="btn-group" role="group" aria-label="Member Page">
+                <button class="btn btn-danger" id="getInfo">Get Weather Information</button>
+                <a class="btn btn-warning" href="/posts.html">View Posts</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 card mb-3"></div>
+      </div>
+      <br />
+
+      <footer class="text-center h3">
+        <kbd role="contentinfo">&copy;<span></span>. M. Bouguerra. All rights reserved</kbd>
+      </footer>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/member.js"></script>
+
+
+</body>
+
+</html>
