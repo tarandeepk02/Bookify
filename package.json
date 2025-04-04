@@ -24,5 +24,13 @@
     "stack",
     "web",
     "development"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarandeepk02/Bookify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tarandeepk02/Bookify/issues"
+  },
+  "homepage": "https://github.com/tarandeepk02/Bookify#readme"
 }

@@ -12,6 +12,13 @@
         height: 400px;
         object-fit: cover;
       }
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
     </style>
   </head>
 
@@ -62,55 +69,48 @@
         </button>
       </div>
 
-      <!-- BOOKS LIST (3 ITEMS PER ROW) -->
-      <div class="container my-5">
-        <div class="text-center">
-          <h2 class="text-center">Books Collection</h2>
-          <p class="lead">Crisp like a new sheet of paper</p>
+      <!-- [2] Books Collection (from MongoDB) -->
+      <div class="container my-2">
+        <div class="text-center mb-4">
+          <h2 class="text-center">Bookify Books</h2>
+          <!-- <p class="lead">Crisp like a new sheet of paper</p> -->
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <img
-                src="https://placehold.co/200x200"
-                class="card-img-top"
-                alt="Book 1"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Book Title 1</h5>
-                <p class="card-text">Brief description of the book.</p>
-                <a href="#" class="btn btn-primary">View Details</a>
-              </div>
-            </div>
+        <div id="bookCards" class="row">
+          <!-- JS -->
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="books.html" class="btn btn-outline-primary">View All</a>
+        </div>
+      </div>
+
+      <!-- [3] Google Books Carousel (from Open API) -->
+      <div class="container my-2">
+        <h2 class="mb-4 text-center">Google Books</h2>
+        <div
+          id="googleBooksCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner" id="googleBooksInner">
+            <!-- JS slide-->
           </div>
-          <div class="col-md-4">
-            <div class="card">
-              <img
-                src="https://placehold.co/200x200"
-                class="card-img-top"
-                alt="Book 2"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Book Title 2</h5>
-                <p class="card-text">Brief description of the book.</p>
-                <a href="#" class="btn btn-primary">View Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <img
-                src="https://placehold.co/200x200"
-                class="card-img-top"
-                alt="Book 3"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Book Title 3</h5>
-                <p class="card-text">Brief description of the book.</p>
-                <a href="#" class="btn btn-primary">View Details</a>
-              </div>
-            </div>
-          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#googleBooksCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#googleBooksCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
         </div>
       </div>
     </main>
@@ -118,7 +118,7 @@
     <div id="bottom"></div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
-
+    <script src="js/home.js"></script>
     <script src="js/partials.js"></script>
   </body>
 </html>

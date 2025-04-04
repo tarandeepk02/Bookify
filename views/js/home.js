@@ -138,3 +138,96 @@
 //     });
 //   };
 // })();
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      // 1. loading from MongoDB
+      const res = await fetch("/books");
+      const books = await res.json();
+      const limitedBooks = books.slice(0, 8);
+      const container = document.getElementById("bookCards");
+  
+      limitedBooks.forEach(book => {
+        const card = document.createElement("div");
+        card.className = "col-md-3 mb-4";
+  
+        card.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height:200px; object-fit:cover;">
+            <div class="card-body">
+              <h5 class="card-title">${book.title}</h5>
+              <p class="card-text"><small>${book.authors}</small></p>
+              <a href="book-details.html?id=${book._id}" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+  
+      // 2. Google Books Carousel
+      await loadGoogleBooksCarousel();
+  
+    } catch (error) {
+      console.error("fail to read book data.", error);
+    }
+  });
+  
+  async function loadGoogleBooksCarousel() {
+    try {
+      const query = "python";
+      const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=9`);
+      const data = await res.json();
+      const books = data.items;
+      console.log("Google Books:", books);
+  
+      const container = document.getElementById("googleBooksInner");
+      container.innerHTML = "";
+  
+      const cardsPerSlide = 3;
+  
+      for (let i = 0; i < books.length; i += cardsPerSlide) {
+        const item = document.createElement("div");
+        item.className = `carousel-item ${i === 0 ? "active" : ""}`;
+  
+        const row = document.createElement("div");
+        row.className = "row justify-content-center";
+  
+        for (let j = i; j < i + cardsPerSlide && j < books.length; j++) {
+          const volume = books[j].volumeInfo;
+          const title = volume.title || "No title";
+          const thumbnail = volume.imageLinks?.thumbnail || "https://placehold.co/200x300";
+          const authors = volume.authors?.join(", ") || "Unknown";
+  
+          const col = document.createElement("div");
+          col.className = "col-md-3 mx-2"; 
+  
+          const infoLink = volume.infoLink || "#";
+
+          col.innerHTML = `
+            <a href="${infoLink}" target="_blank" style="text-decoration: none; color: inherit;">
+              <div class="card shadow-sm">
+                <img src="${thumbnail}" class="card-img-top" alt="${title}" style="height:300px; object-fit:cover;">
+                <div class="card-body">
+                  <h6 class="card-title">${title}</h6>
+                  <p class="card-text"><small>${authors}</small></p>
+                </div>
+              </div>
+            </a>
+          `;
+          
+  
+          row.appendChild(col);
+        }
+  
+        item.appendChild(row);
+        container.appendChild(item);
+      }
+    } catch (err) {
+      console.error("Fail to read Google Books", err);
+    }
+  }
+  
+  // page loading
+  document.addEventListener("DOMContentLoaded", () => {
+    loadGoogleBooksCarousel();
+  });
+  
