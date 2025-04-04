@@ -1,12 +1,13 @@
 (() => {
-    const User = (username, hashed) => {
+    const User = (name,email, hashed) => {
         const Role = {
             ADMIN: 'admin',
             MEMBER: 'member',
             GUEST: 'guest'
         }
         return {
-            username: username,
+            name: name,
+            email: email,
             password: hashed,
             role: Role.MEMBER,
             since: new Date().toUTCString()

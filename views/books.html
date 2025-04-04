@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookify :: Read More, Explore More</title>
+    <link rel="stylesheet" href="css/journal.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <style>
+      .carousel-item img {
+        height: 400px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="top"></div>
+
+    <main role="main">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-2 mt-lg-0" id="sidebar"></div>
+          <div class="col-lg-10">
+            <div class="mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Book Management</h4>
+                    </div>
+                    <div class="col-md-4 text-end">
+<a href="bookAdd.html" class="btn btn-primary"><i class="bi-bag-plus-fill"></i> Add Book</a>
+
+                    </div>
+                </div>
+              
+
+              <div class="row justify-content-center mt-4">
+                <div class="" id="book">
+                    <div class="card">
+                  <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        Book Information
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button type="button" id="viewBooks" class="btn btn-success">View Books</a>
+                    </div>
+                </div>
+                    
+                
+                </div>
+                  <div class="card-body">
+                    
+                  </div>
+                </div>
+                </div>
+
+                <div id="books">
+                  <table
+                    class="table table-bordered table-stripped"
+                    id="booksData"
+                  >
+                    <thead>
+                      <th>Sr. No.</th>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Publisher</th>
+                      <th>Added On</th>
+                      <th>Action</th>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="bottom"></div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/partials.js"></script>
+
+    <script src="js/books.js"></script>
+  </body>
+</html>
