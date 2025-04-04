@@ -1,0 +1,185 @@
+<footer class="bg-dark text-center h6 pt-3 pb-3 mb-0">
+  <kbd role="contentinfo"
+    >&copy;<span></span> Bookify. All rights reserved.</kbd
+  >
+</footer>
+
+<!-- Register Modal -->
+<div
+  class="modal fade"
+  id="registerModal"
+  tabindex="-1"
+  aria-labelledby="registerModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">
+          Don't have an account? Sign Up
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-sm-12">
+
+
+
+
+            <div id="signup-error"></div>
+          </div>
+        <form action="register" method="post">
+          <div class="form-group row mb-3">
+            <label for="name" class="col-sm-4 col-form-label"
+              >Name<span class="text-danger">*</span></label
+            >
+            <div class="col-sm-8">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                value="ttt"
+              />
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label for="email" class="col-sm-4 col-form-label"
+              >Email ID<span class="text-danger">*</span></label
+            >
+            <div class="col-sm-8">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                value="t@gmail.com"
+              />
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label for="password" class="col-sm-4 col-form-label"
+              >Password<span class="text-danger">*</span></label
+            >
+            <div class="col-sm-8">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                title="Password must contain at least 8 characters"
+                minlength="8"
+                maxlength="20"
+                class="form-control"
+                placeholder="Enter Password"
+                required
+                value="12345678"
+              />
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label for="confirm" class="col-sm-4 col-form-label"
+              >Confirm Password<span class="text-danger">*</span></label
+            >
+            <div class="col-sm-8">
+              <input
+                type="password"
+                class="form-control"
+                id="confirm"
+                name="confirm"
+                placeholder="Confirm your password"
+                title="Password must contain at least 8 characters"
+                minlength="8"
+                maxlength="20"
+                value="12345678"
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-12 text-end">
+              <button type="button" class="btn btn-outline-secondary" name="clear" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" id="signup">
+                Sign Up
+              </button>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Already have an account? Login</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row mb-3">
+            <label for="email" class="col-sm-3 col-form-label">Email ID<span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input
+                type="email"
+                class="form-control"
+                id="lemail"
+                placeholder="Enter your email"
+              />
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label for="password" class="col-sm-3 col-form-label"
+              >Password<span class="text-danger">*</span></label
+            >
+            <div class="col-sm-9">
+              <input
+                type="password"
+                class="form-control"
+                id="lpassword"
+                placeholder="Type your password"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 text-end">
+              <button type="button" class="btn btn-outline-secondary" name="clear" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" id="signin">
+                Login
+              </button>
+            </div>
+            <div class="col-sm-12">
+              <span id="signin-error"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

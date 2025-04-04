@@ -1,83 +1,140 @@
-// using IIFE
-(() => {    
-    const setCopyrightYear = () => {
-        document.querySelector('footer>kbd>span').innerHTML = new Date().getFullYear()
-    }
-    const setHead = () => {
-        let head = `<meta charset="UTF-8" />\n
-        <meta http-equiv="X-UA-Compatible"/>\n
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n
-        <title>Using MongoDB</title>\n
-        <link rel="stylesheet" href="css/vapor.min.css" />\n
-        <link rel="shortcut icon" href="img/question.png" type="image/x-icon" />\n`
-        document.querySelector('head').innerHTML = head
-    }
-    const setNavbar = () => {
-        let navbar = `<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid" role="banner">
-          <img src="img/question.png" class="img-responsive rrounded" alt="Bootstrap Logo" width="50" />
-          <a class="navbar-brand" href="#">Langara Forum</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Member
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      
-                  <li>
-                    <a class="dropdown-item" href="posts.html">Posts</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="filter.html">Filter Posts</a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="search,html">Search Posts</a>
-                  </li>
-                 
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="about.html">About Us</a>
-              </li>
-            </ul>
-            
-              <div class="btn-group" role="group" aria-label="Registration and Login" id="aa">
-              <button class="btn btn-warning" id="register">
-                Register
-              </button>
-              <button class="btn btn-primary" id="login">
-                Log in
-              </button></div>
-              
-            
-          </div>
-        </div>
-      </nav>`
-        document.querySelector("header#header").innerHTML = navbar
-    }
-    const setFooter = () => {
-        let footer = `<footer class="footer text-center">\n
-    <kbd role="contentinfo">&copy; <span></span>. M. Bouguerra. All rights reserved</kbd>\n
-</footer>`
-        document.querySelector("div#footer").innerHTML = footer
-    }
-    //window.onload = () => {
-        setHead()
-        setNavbar()
-        setFooter()
-        setCopyrightYear()     
+(() => {
+  const setCopyrightYear = () => {
+    document.querySelector("footer>kbd>span").innerHTML =
+      new Date().getFullYear();
+  };
+  async function postData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
 
-    //}
-})()
+    const reply = await response.json();
+    //console.log("Datadata="+JSON.stringify(reply)+"response="+reply.status)
+    return reply; // parses JSON response into native JavaScript objects
+  }
+
+  const register = async (event) => {
+    // prevent refreshing the page
+    event.preventDefault();
+    let name = document.querySelector("#name").value;
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
+    let confirm = document.querySelector("#confirm").value;
+    if (password === confirm) {      
+
+      let response = await postData("/register", {
+        name,
+        email,
+        password,
+        confirm,
+      });
+
+      if (response && response.status === 200) {
+        window.location.href = "/"; 
+      } else {
+        document.querySelector(
+          "#signup-error"
+        ).innerHTML = `<div class="alert alert-dismissible alert-danger">${
+            response.msg || "An error occurred. Please try again."
+        }</div>`;
+      }
+    } else {
+      document.querySelector(
+        "#signup-error"
+      ).innerHTML = `<div class="alert alert-dismissible alert-primary">Passwords do not match. Re-enter your password</div>`;
+    }
+  };
+  const login = async (event) => {
+    event.preventDefault();
+    let email = document.querySelector("#lemail").value;
+    let password = document.querySelector("#lpassword").value;   
+    
+
+    let response = await postData("/login", {        
+        email,
+        password
+      });
+
+    console.log("Data=" + JSON.stringify(response));
+
+    if (response && response.status === 200) {
+        window.location.href = "/admin-dashboard.html"; 
+      } else {
+        document.querySelector(
+          "#signup-error"
+        ).innerHTML = `<div class="alert alert-dismissible alert-danger">${
+            response.msg || "An error occurred. Please try again."
+        }</div>`;
+      }
+
+  };
+
+
+  // Check session to toggle login/register and dashboard buttons
+  const checkSession = async () => {
+    let response = await fetch("/session-info", {
+        method: "GET", // Use GET method
+        headers: {
+          "Content-Type": "application/json", // If necessary
+        },
+      });
+      let data = await response.json();
+
+      //console.log("response=" + JSON.stringify(data));
+
+    if (data && data.status === 200 && data.user) {
+      // User is logged in, show dashboard button and hide login/register
+      document.getElementById('auth-buttons').style.display = 'none';
+      document.getElementById('dashboard-btn').style.display = 'block';
+
+
+      const sidebarResponse = await fetch("/partials/sidebar.html");
+    const sidebarContent = await sidebarResponse.text();
+    document.querySelector("#sidebar").innerHTML = sidebarContent;
+
+
+    } else {
+      // User is not logged in, show login/register buttons
+      document.getElementById('auth-buttons').style.display = 'block';
+      document.getElementById('dashboard-btn').style.display = 'none';
+    }
+  };
+
+  // Function to load and inject the header and footer HTML
+  const loadHeaderFooter = async () => {
+    // Load header content dynamically
+    const headerResponse = await fetch("/partials/top.html");
+    const headerContent = await headerResponse.text();
+    document.querySelector("#top").innerHTML = headerContent;
+
+    // Load footer content dynamically
+    const footerResponse = await fetch("/partials/bottom.html");
+    const footerContent = await footerResponse.text();
+    document.querySelector("#bottom").innerHTML = footerContent;
+    setCopyrightYear();
+  };
+
+  window.addEventListener('load', () => {
+    // Load the header and footer content
+
+    loadHeaderFooter().then(() => {
+
+      checkSession()
+      // Attach event listeners after the content is fully loaded
+      document.querySelector("#signup")?.addEventListener("click", register);
+      document.querySelector("#signin")?.addEventListener("click", login);
+
+    });
+  });
+})();

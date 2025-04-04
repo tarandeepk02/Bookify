@@ -1,9 +1,10 @@
 const util = require('../models/util.js')
 const config = require("../server/config/config")
 const Post = require("../models/post")
-const client = util.getMongoClient(true)
+const client = util.getMongoClient(false)
 const express = require('express')
 const memberController = express.Router()
+const { ObjectId } = require('mongodb')
 // Authentication & Authorization Middleware
 const authenticateUser = (req, res, next) => {
     if (req.user == null) {
@@ -23,6 +24,65 @@ const authenticateRole = (role, req, res, next) => {
 
     }
 }
+
+// HTTP GET
+memberController.get('/users', util.logRequest, async (req, res, next) => {
+    let collection = client.db().collection('Users')
+    let Users = await util.findAll(collection, {})
+    res.status(200).json(Users)
+
+})
+
+memberController.get('/user/:ID', async (request, response, next) => {
+    // extract the querystring from url
+    let id = request.params.ID
+    console.info(`User Id ${id}`)
+    let collection = client.db().collection('Users')
+    let user = await util.findOne(collection, id)
+    //const data = Utils.readJson(__dirname + '/../data/posts.json')
+    //util.insertMany(posts, data[id])
+    console.log('user', user)
+    response.status(200).json({ user: user })
+})
+
+// HTTP DELETE for deleting a user
+memberController.delete('/user/:id', util.logRequest, async (req, res, next) => {
+    const userId = req.params.id;
+    console.info(`Deleting user with ID: ${userId}`)
+
+    
+    try {
+        let collection = client.db().collection('Users')
+        const result = await collection.deleteOne({ _id: new ObjectId(userId) });
+
+    if (result.deletedCount === 0) {
+        res.status(404).json({'msg':'User not found'});
+    }
+
+    console.info(`User with ID: ${userId} deleted successfully`)
+    return res.status(200).send({'msg':'User deleted successfully'});
+    } catch (err) {
+        console.error('Error deleting user:', err);
+        res.status(500).json({'msg':'Error deleting user'});
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 memberController.get('/member', authenticateUser, util.logRequest, async (req, res, next) => {
     console.info('Inside member.html')
     let collection = client.db().collection('Posts')

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookify :: Read More, Explore More</title>
+    <link rel="stylesheet" href="css/journal.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <style>
+        
+    </style>
+  </head>
+
+  <body>
+    <div id="top"></div>
+
+    <main role="main">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-2 mt-lg-0" id="sidebar"></div>
+          <div class="col-lg-10">
+            <div class="mt-5">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Book Management</h4>
+                    </div>
+                    <div class="col-md-4 text-end">
+<a href="books.html" class="btn btn-primary"><i class="bi bi-book-half"></i> View Books</a>
+
+                    </div>
+                </div>
+              
+
+              <div class="row justify-content-center mt-4">
+                <form class="row " action="/addBook" method="post" id="addBookForm" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="col-md-10 mb-3">
+                            <label for="title" class="form-label h6">Title<span class="text-danger">*</span></label>
+                            <input type="text" name="title" id="title" class="form-control" value="test" />
+                            <span id="errorTitle" class="text-danger"></span>
+                          </div>
+
+                          <div class="col-md-10 mb-3">
+                            <label for="authors" class="form-label h6">Author(s)<span class="text-danger">*</span></label>
+                            <input type="text" name="authors" id="authors" class="form-control" value="test" />
+                            <span id="errorAuthors" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-10 mb-3">
+                            <label for="isbn" class="form-label h6">ISBN<span class="text-danger">*</span></label>
+                            <input type="text" name="isbn" id="isbn" class="form-control" value="test" />
+                            <span id="errorIsbn" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-10 mb-3">
+                            <label for="publisher" class="form-label h6">Publisher<span class="text-danger">*</span></label>
+                            <input type="text" name="publisher" id="publisher" class="form-control" value="test" />
+                            <span id="errorPublisher" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-10 mb-3">
+                            <label for="publishedDate" class="form-label h6">Published Date<span class="text-danger">*</span></label>
+                            <input type="date" name="publishedDate" id="publishedDate" class="form-control" value="test" value="2023-11-11" />
+                            <span id="errorpublishedDate" class="text-danger"></span>
+                          </div>
+
+                          <div class="col-md-10 mb-3">
+                            <label for="topic" class="form-label h6">Genre<span class="text-danger">*</span></label>
+                            <select name="genre" id="genre" class="form-control">
+                              <option value="" selected>--Select--</option>/>
+                              <option value="Programming">Programming</option>
+                              <option value="Networking">Networking</option>
+                              <option value="Security">Security</option>
+                              <option value="Database">Database</option>
+                              <option value="General">General</option>
+                            </select>
+                            <span id="errorGenre" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-10 mb-3">
+                            <label for="description" class="form-lable h6">Description<span class="text-danger">*</span></label>
+                            <textarea id="description" name="description" class="form-control" rows="5" 
+                              maxlength="280" minlength="50"></textarea>
+                              <span id="errorDescription" class="text-danger"></span>
+                          </div>
+
+                          <div class="col-md-10 mb-3">
+                            <label for="coverImage" class="form-label h6">Cover Image<span class="text-danger">*</span></label>
+                            <input type="file" name="coverImage" id="coverImage" class="form-control" />
+                            <span id="errorCoverImage" class="text-danger"></span>
+                          </div>
+                          
+                          <div class="col-md-10 mb-3">
+                            <label for="price" class="form-label h6">Price<span class="text-danger">*</span></label>
+                            <input type="tel" name="price" id="price" class="form-control" value="56" />
+                            <span id="errorPrice" class="text-danger"></span>
+                          </div>
+                          
+                          <div class="col-md-10 mb-3">
+                            <label for="rating" class="form-label h6">Rating</label>
+                            <select data-val="true" name="rating" id="rating" class="form-control">
+                              <option value="0" selected>--Select--</option>/>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                            <span id="errorRating" class="text-danger"></span>
+          
+                          </div>
+
+
+                      
+                     
+                      
+                      <div class="col-md-10 mb-5">
+                        <div class="card-footer text-center">
+                          <div class="btn-group" role="group" aria-label="Post Page">
+                            <button type="reset" class="btn btn-danger">Clear</button>
+                            <button type="submit" class="btn btn-success">Add Book</a>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
+
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="bottom"></div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/partials.js"></script>
+
+    <script src="js/books.js"></script>
+  </body>
+</html>

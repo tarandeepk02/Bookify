@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookify :: Read More, Explore More</title>
+    <link rel="stylesheet" href="css/journal.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <style>
+      .carousel-item img {
+        height: 400px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="top"></div>
+
+    <main role="main">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-2 mt-lg-0" id="sidebar"></div>
+          <div class="col-lg-10">
+            <div class="mt-5">
+              <h4>User Management</h4>
+
+              <div class="row justify-content-center mt-4">
+                <div class="" id="user">
+                    <div class="card">
+                  <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        User Information
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button type="button" id="viewUsers" class="btn btn-success">View Users</a>
+                    </div>
+                </div>
+                    
+                
+                </div>
+                  <div class="card-body">
+                    <!-- Name -->
+                    <h5 class="card-title">
+                      Name: <span id="userName">John Doe</span>
+                    </h5>
+
+                    <!-- Email -->
+                    <p class="card-text">
+                      Email: <span id="userEmail">john.doe@example.com</span>
+                    </p>
+
+                    <!-- Since -->
+                    <p class="card-text">
+                      Since: <span id="userSince">2022</span>
+                    </p>
+                  </div>
+                </div>
+                </div>
+
+                <div id="users">
+                  <table
+                    class="table table-bordered table-stripped"
+                    id="usersData"
+                  >
+                    <thead>
+                      <th>Sr. No.</th>
+                      <th>Name</th>
+                      <th>Email ID</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="bottom"></div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/partials.js"></script>
+
+    <script src="js/users.js"></script>
+  </body>
+</html>
