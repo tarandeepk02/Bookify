@@ -173,7 +173,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   async function loadGoogleBooksCarousel() {
     try {
-      const query = "python";
+      // random keyword 
+      const queries = ["fiction", "science", "travel", "romance", "history", "fantasy", "javascript", "ai", "art"];
+      const query = queries[Math.floor(Math.random() * queries.length)];
+  
       const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=9`);
       const data = await res.json();
       const books = data.items;
@@ -196,12 +199,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           const title = volume.title || "No title";
           const thumbnail = volume.imageLinks?.thumbnail || "https://placehold.co/200x300";
           const authors = volume.authors?.join(", ") || "Unknown";
+          const infoLink = volume.infoLink || "#";
   
           const col = document.createElement("div");
-          col.className = "col-md-3 mx-2"; 
+          col.className = "col-md-3 mx-2";
   
-          const infoLink = volume.infoLink || "#";
-
           col.innerHTML = `
             <a href="${infoLink}" target="_blank" style="text-decoration: none; color: inherit;">
               <div class="card shadow-sm">
@@ -213,7 +215,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               </div>
             </a>
           `;
-          
   
           row.appendChild(col);
         }
@@ -226,7 +227,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
   
-  // page loading
   document.addEventListener("DOMContentLoaded", () => {
     loadGoogleBooksCarousel();
   });
