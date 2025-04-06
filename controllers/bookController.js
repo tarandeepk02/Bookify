@@ -104,6 +104,80 @@ bookController.post('/addBook', util.logRequest, upload.single('coverImage'), bo
     }
 });
 
+
+bookController.post('/editBookk', util.logRequest, upload.single('coverImage'), bookValidationRules, async (req, res, next) => {
+    // Check for validation errors
+    console.log('Request Body:', JSON.stringify(req.body));
+
+    let id = req.body._id;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        // If errors are found, return them as a response
+        return res.status(400).json({ errors: errors.mapped() });
+    }
+
+    // Destructure fields from the request body
+    const { _id, title, authors, isbn, publisher, publishedDate, genre, description, price, rating, currentCoverImage } = req.body;
+
+    // If no new file is uploaded, keep the current cover image (from the existing book)
+    const coverImage = req.file ? '/uploads/' + req.file.filename : currentCoverImage;
+
+    console.log("Cover Image:", coverImage);
+
+
+
+
+
+ // Connect to MongoDB and get the collection
+ let collection = client.db().collection('Books');
+
+ // Create the updated book object
+ let updatedBook = { 
+     title, 
+     authors, 
+     isbn, 
+     publisher, 
+     publishedDate, 
+     genre, 
+     description, 
+     price, 
+     rating,
+     coverImage // This will be the new or existing image path
+ };
+
+ // Update the book in the database by its _id (ensure it's a valid ObjectID)
+ const result = await collection.updateOne(
+     { _id: new ObjectId(id) },
+     { $set: updatedBook }  // Update the book fields
+ );
+
+ // Check if the book was found and updated
+ if (result.matchedCount === 0) {
+     return res.status(404).json({ status: 404, msg: "Book not found" });
+ }
+
+ // If the update was successful
+ return res.status(200).json({ status: 200, msg: "Book has been updated successfully" });
+
+
+
+
+
+
+
+
+
+
+    try {
+       
+        
+    } catch (err) {
+        next(err);  // Pass the error to the error-handling middleware
+    }
+});
+
+
 // HTTP GET
 bookController.get('/books', util.logRequest, async (req, res, next) => {
     let collection = client.db().collection('Books')
@@ -148,37 +222,6 @@ bookController.delete('/book/:id', util.logRequest, async (req, res, next) => {
     }
 })
 
-
-
-
-
-// bookController.post('/addBook', util.logRequest, async (req, res, next) => {
-//     let collection = client.db().collection('Books')
-//     let title = req.body.title
-//     let authors = req.body.authors
-//     let isbn = req.body.isbn
-//     let publisher = req.body.publisher
-//     let publishedDate = req.body.publishedDate
-//     let genre = req.body.genre
-//     let description = req.body.description
-//     let coverImage = req.body.coverImage
-//     let price = req.body.price
-//     let rating = req.body.rating
-
-
-
-
-//     let book = Book(title, authors, isbn, publisher, publishedDate, genre, description, coverImage, price, rating)
-//     util.insertOne(collection, book)
-
-//     // res.json(
-//     //     {
-//     //         message: `You post was added to the ${topic} forum`
-//     //     }
-//     // )
-//     //Utils.saveJson(__dirname + '/../data/posts.json', JSON.stringify(posts))
-//     res.redirect('/books.html')
-// })
 
 
 

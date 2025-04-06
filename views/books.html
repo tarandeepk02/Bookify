@@ -1,94 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookify :: Read More, Explore More</title>
-    <link rel="stylesheet" href="css/journal.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-    <style>
-      .carousel-item img {
-        height: 400px;
-        object-fit: cover;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div id="top"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookify :: Read More, Explore More</title>
+  <link rel="stylesheet" href="css/journal.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+  <style>
+    .carousel-item img {
+      height: 400px;
+      object-fit: cover;
+    }
+  </style>
+</head>
 
-    <main role="main">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-2 mt-lg-0" id="sidebar"></div>
-          <div class="col-lg-10">
-            <div class="mt-5 mb-5">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h4>Book Management</h4>
-                    </div>
-                    <div class="col-md-4 text-end">
-<a href="bookAdd.html" class="btn btn-primary"><i class="bi-bag-plus-fill"></i> Add Book</a>
+<body>
+  <div id="top"></div>
 
-                    </div>
-                </div>
-              
+  <main role="main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 mt-lg-0" id="sidebar"></div>
+        <div class="col-lg-10">
+          <div class="mt-5 mb-5">
+            <div class="row">
+              <div class="col-md-8">
+                <h4>Book Management</h4>
+              </div>
+              <div class="col-md-4 text-end">
+                <a href="bookAdd.html" class="btn btn-primary"><i class="bi-bag-plus-fill"></i> Add Book</a>
 
-              <div class="row justify-content-center mt-4">
-                <div class="" id="book">
-                    <div class="card">
+              </div>
+            </div>
+
+
+            <div class="row justify-content-center mt-4">
+              <div class="" id="book">
+                <div class="card">
                   <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
                         Book Information
-                    </div>
-                    <div class="col-md-6 text-end">
+                      </div>
+                      <div class="col-md-6 text-end">
                         <button type="button" id="viewBooks" class="btn btn-success">View Books</a>
+                      </div>
                     </div>
-                </div>
-                    
-                
-                </div>
+
+
+                  </div>
                   <div class="card-body">
-                    
+
                   </div>
                 </div>
-                </div>
-
-                <div id="books">
-                  <table
-                    class="table table-bordered table-stripped"
-                    id="booksData"
-                  >
-                    <thead>
-                      <th>Sr. No.</th>
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th>Publisher</th>
-                      <th>Added On</th>
-                      <th>Action</th>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
               </div>
+
+              <div id="books">
+                <table class="table table-bordered table-stripped" id="booksData">
+                  <thead>
+                    <th>Sr. No.</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Added On</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+
+
+              <div id="editBookFormDiv" style="display: none;">
+               
+
+
+                <form class="row " action="/editBook" method="post" id="editBookForm" enctype="multipart/form-data">
+
+                  <input type="hidden" name="_id" id="_id" class="form-control" value="" />
+                  <fieldset>
+                      <div class="col-md-10 mb-3">
+                          <label for="title" class="form-label h6">Title<span class="text-danger">*</span></label>
+                          <input type="text" name="title" id="title" class="form-control" value="test" />
+                          <span id="errorTitle" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-10 mb-3">
+                          <label for="authors" class="form-label h6">Author(s)<span class="text-danger">*</span></label>
+                          <input type="text" name="authors" id="authors" class="form-control" value="test" />
+                          <span id="errorAuthors" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-10 mb-3">
+                          <label for="isbn" class="form-label h6">ISBN<span class="text-danger">*</span></label>
+                          <input type="text" name="isbn" id="isbn" class="form-control" value="test" />
+                          <span id="errorIsbn" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-10 mb-3">
+                          <label for="publisher" class="form-label h6">Publisher<span class="text-danger">*</span></label>
+                          <input type="text" name="publisher" id="publisher" class="form-control" value="test" />
+                          <span id="errorPublisher" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-10 mb-3">
+                          <label for="publishedDate" class="form-label h6">Published Date<span class="text-danger">*</span></label>
+                          <input type="date" name="publishedDate" id="publishedDate" class="form-control" value="test" value="2023-11-11" />
+                          <span id="errorpublishedDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-10 mb-3">
+                          <label for="topic" class="form-label h6">Genre<span class="text-danger">*</span></label>
+                          <select name="genre" id="genre" class="form-control">
+                            <option value="" selected>--Select--</option>/>
+                            <option value="Programming">Programming</option>
+                            <option value="Networking">Networking</option>
+                            <option value="Security">Security</option>
+                            <option value="Database">Database</option>
+                            <option value="General">General</option>
+                          </select>
+                          <span id="errorGenre" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-10 mb-3">
+                          <label for="description" class="form-lable h6">Description<span class="text-danger">*</span></label>
+                          <textarea id="description" name="description" class="form-control" rows="5" 
+                            maxlength="280" minlength="50"></textarea>
+                            <span id="errorDescription" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-10 mb-3">
+                          <label for="coverImage" class="form-label h6">Cover Image<span class="text-danger">*</span></label>
+                          <input type="hidden" name="currentCoverImage" id="currentCoverImage" class="form-control" value="" />
+                          <div class="col-md-3 border border-4 border-primary overflow-hidden">
+                            <img src="https://placehold.co/100x100" id="bookImage" height="200"
+                                class="img-fluid">
+                        </div>
+                          <input type="file" name="coverImage" id="coverImage" class="form-control" />
+                          <span id="errorCoverImage" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-10 mb-3">
+                          <label for="price" class="form-label h6">Price<span class="text-danger">*</span></label>
+                          <input type="tel" name="price" id="price" class="form-control" value="56" />
+                          <span id="errorPrice" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-10 mb-3">
+                          <label for="rating" class="form-label h6">Rating</label>
+                          <select data-val="true" name="rating" id="rating" class="form-control">
+                            <option value="0" selected>--Select--</option>/>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                          <span id="errorRating" class="text-danger"></span>
+        
+                        </div>
+                    
+                    <div class="col-md-10 mb-5">
+                      <div class="card-footer text-center">
+                          <button type="submit" class="btn btn-success">Update Book</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+
+
+
+
+
+              </div>
+
+
+
+
+
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
-    <div id="bottom"></div>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
 
-    <script src="js/partials.js"></script>
 
-    <script src="js/books.js"></script>
-  </body>
+
+
+
+  </main>
+
+  <div id="bottom"></div>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/partials.js"></script>
+
+  <script src="js/books.js"></script>
+</body>
+
 </html>
