@@ -4,6 +4,7 @@ const User = require("../models/user");
 //const client = util.getMongoClient(false)
 const client = util.getMongoClient(false);
 const express = require("express");
+const bcrypt = require('bcrypt');
 
 const homeController = express.Router();
 
@@ -48,6 +49,8 @@ homeController.post("/register", util.logRequest, async (req, res, next) => {
           msg: "Email already in use. Please try another one.",
         });
     } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
       // Insert the user into the collection
       await util.insertOne(collection, user);
 
@@ -69,24 +72,25 @@ homeController.post("/login", util.logRequest, async (req, res, next) => {
   console.log("login");
   let collection = client.db().collection("Users");
   let { email, password } = req.body;
-
+  const hashedPassword = await bcrypt.hash(password, 10);
   try {
     const existingUser = await collection.findOne({
       email: email,
-      password: password,
     });
 
-    if (existingUser) {
+    if (existingUser && await bcrypt.compare(password, existingUser.password)) {
       // Store user data in session after successful login
       req.session.user = {
         id: existingUser._id,
         name: existingUser.name,
         email: existingUser.email,
+        role: existingUser.role,
+        picture: existingUser.picture,
       };
       //req.session.user = { email }
       return res
         .status(200)
-        .json({ status: 200, msg: "User logged in successfully" });
+        .json({ status: 200, msg: "User logged in successfully",userRole:existingUser.role });
     } else {
       return res
         .status(400)

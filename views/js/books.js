@@ -71,6 +71,14 @@
               // Add Action Button
               let tdAction = document.createElement("td");
       
+              
+              // Create Edit Button
+            let editBtn = document.createElement("button");
+            editBtn.classList.add("btn", "btn-outline-info", "btn-sm", "me-2"); // "me-2" adds right margin
+            editBtn.innerHTML = '<i class="bi bi-pencil"></i>'; // Bootstrap pencil icon
+            editBtn.onclick = () => editBook(book._id); // Add your edit function here
+            tdAction.appendChild(editBtn);
+              
               // Create View Details Button
               let viewBtn = document.createElement("button");
               viewBtn.classList.add("btn", "btn-outline-success", "btn-sm", "me-2"); // "me-2" adds right margin
@@ -128,11 +136,7 @@
                     <strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong> <span id="user${key}">${value}</span>
                 </p>
             `;
-            }
-    
-            
-    
-    
+            }    
     
         });
         document.querySelector("#book .card-body").innerHTML = cardContent;
@@ -218,17 +222,129 @@ for (let [key, value] of formData.entries()) {
 
     }
 
+
+    const bookEdit = async (event) => {
+        event.preventDefault(); 
+        // Get form data
+    const formData = new FormData(event.target);
+// Log the data being sent to the backend for debugging
+// for (let [key, value] of formData.entries()) {
+//     console.log(`${key}: ${value}`);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const response = await fetch('/editBookk', {
+    method: 'POST',
+    body: formData
+});
+
+console.log("response="+JSON.stringify(response));
+
+if (response.status==200) {
+    // If the response is successful, redirect the user
+    window.location.href = '/books.html';  // Example redirect on success
+}
+
+else if (response.status === 400) {
+    document.querySelector(
+                  "#form-error"
+                ).innerHTML = `<div class="alert alert-dismissible alert-danger">${
+                    response.msg || "An error occurred. Please try again."
+                }</div>`;
+ }
+
+else {
+    // If response is not OK, handle validation errors
+    const errorData = await response.json(); // Parse the response JSON
+console.log("errorData="+JSON.stringify(errorData));
+    // Loop through errors and display them
+    for (const [field, errorMessage] of Object.entries(errorData.errors)) {
+        const errorElement = document.getElementById('error' + capitalizeFirstLetter(field));
+        if (errorElement) {
+            errorElement.innerText = errorMessage.msg;  // Display error message
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+        try {
+        } catch (err) {
+            console.error('Error during form submission:', err);
+            // Handle any errors that occur during the fetch process
+        }
+
+
+
+    }
+
     const viewBooks = async (users) => {
         document.querySelector("#book").style.display = "none";
         document.querySelector("#books").style.display = "block";
       }
 
+
+      const editBook = async (bookId) => {
+        // Fetch the current book details
+        const book = await getJsonData(`/book/${bookId}`);
+        const bookDetails = book.book;  // Assuming response is an array with a single book object
+    
+        // Pre-fill the form fields with existing book data
+        Object.keys(bookDetails).forEach((key) => {
+            if (key !== '_idd') {
+                const inputField = document.querySelector(`#${key}`);
+                if (inputField) {
+                    if (key === 'coverImage') {
+                        
+                        document.querySelector("#currentCoverImage").value = `${bookDetails[key]}`;
+                        //inputField.innerHTML = `<img src="${bookDetails[key]}" width="200">`;  // Display image for coverImage
+                        document.querySelector("#bookImage").src = `${bookDetails[key]}`;
+                        
+                    } else {
+                        inputField.value = bookDetails[key];  // Pre-fill form fields
+                    }
+                }
+            }
+        });
+    
+        // Show the edit form and hide other sections
+        document.querySelector("#editBookFormDiv").style.display = "block";
+        document.querySelector("#books").style.display = "none";
+    }
+    
+
+
+
     window.onload = () => {
         viewBooks()
         getBooks()
-        
+
         document.querySelector("#viewBooks")?.addEventListener("click", viewBooks);
         document.querySelector("#addBookForm")?.addEventListener("submit", bookAdd);
+        document.querySelector("#editBookForm")?.addEventListener("submit", bookEdit);
 
     }
 })()

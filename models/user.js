@@ -1,5 +1,5 @@
 (() => {
-    const User = (name,email, hashed) => {
+    const User = (name,email, hashed,picture) => {
         const Role = {
             ADMIN: 'admin',
             MEMBER: 'member',
@@ -9,6 +9,7 @@
             name: name,
             email: email,
             password: hashed,
+            picture: picture,
             role: Role.MEMBER,
             since: new Date().toUTCString()
         }

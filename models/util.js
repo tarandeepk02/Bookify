@@ -68,6 +68,29 @@
                 if (!(err.name === 'BulkWriteError' && err.code === 11000)) throw err;
             })
     }
+
+    //-------------------------------------------------------------------------
+    // update one matching document
+    const updateOne = async (collection, query, updateDoc) => {
+        return collection.updateOne(query, { $set: updateDoc })
+            .then(res => console.log("Document updated", res))
+            .catch(err => {
+                console.log("Could not update one ", query, err.message);
+            });
+    }
+
+    //-------------------------------------------------------------------------
+    // update many matching documents
+    const updateMany = async (collection, query, updateDoc) => {
+        return collection.updateMany(query, { $set: updateDoc })
+            .then(res => console.log("Documents updated", res))
+            .catch(err => {
+                console.log("Could not update many ", query, err.message);
+            });
+    }
+
+
+
     //-------------------------------------------------------------------------
     const logRequest = async (req, res, next) => {
         const client = util.getMongoClient(false)

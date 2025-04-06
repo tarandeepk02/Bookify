@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookify :: Read More, Explore More</title>
+    <link rel="stylesheet" href="css/journal.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="top"></div>
+
+    <main role="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 mt-lg-0" id="sidebar"></div>
+                <div class="col-lg-10">
+                    <div class="mt-5">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>My Profile</h4>
+                            </div>
+                            <div class="col-md-4 text-end">
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center mt-4">
+                            <form class="row " action="/profile" method="post" id="profileForm"
+                                enctype="multipart/form-data">
+                                <fieldset>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label h6">Name<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" name="name" id="name" class="form-control" value="test" />
+                                        <span id="errorName" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="authors" class="form-label h6">Email ID<span
+                                                class="text-danger">*</span></label>
+                                        <input type="email" name="email" id="email" class="form-control" value="test"
+                                            readonly disabled />
+                                        <span id="errorEmail" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="authors" class="form-label h6">Picture<span
+                                                class="text-danger">*</span></label><br>
+
+                                        <div class="col-md-3 border border-4 border-primary overflow-hidden">
+                                            <img src="https://placehold.co/100x100" id="profileImage" height="100"
+                                                class="img-fluid">
+                                        </div>
+                                        <br>
+                                        <input type="file" name="picture" id="picture" />
+                                        <span id="errorPicture" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="col-md-6 mb-5">
+                                        <div class="card-footer text-center">
+
+                                            <button type="submit" class="btn btn-success" id="updateProfileBtn">Update
+                                                Profile</a>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="bottom"></div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/partials.js"></script>
+
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

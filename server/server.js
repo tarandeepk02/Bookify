@@ -20,7 +20,7 @@ const util = require('../models/util.js')
 const homeController = require('../controllers/homeController')
 const memberController = require('../controllers/memberController')
 const bookController = require('../controllers/bookController')
-
+const dashboardController = require('../controllers/dashboardController')
 //----------------------------------------------------------------
 
 
@@ -99,6 +99,7 @@ server.use(express.urlencoded({ extended: false }))
 server.use(homeController)
 server.use(memberController)
 server.use(bookController)
+server.use(dashboardController)
 server.get('/logs', async (req, res, next) => {
   util.logRequest(req, res, next)
 })

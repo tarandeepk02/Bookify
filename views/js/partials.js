@@ -69,7 +69,13 @@
     console.log("Data=" + JSON.stringify(response));
 
     if (response && response.status === 200) {
+      if(response.userRole=='admin')
+      {
         window.location.href = "/admin-dashboard.html"; 
+      }
+      else{
+        window.location.href = "/dashboard.html"; 
+      }
       } else {
         document.querySelector(
           "#signup-error"
@@ -91,18 +97,40 @@
       });
       let data = await response.json();
 
-      //console.log("response=" + JSON.stringify(data));
+      console.log("response=" + JSON.stringify(data));
 
     if (data && data.status === 200 && data.user) {
       // User is logged in, show dashboard button and hide login/register
       document.getElementById('auth-buttons').style.display = 'none';
       document.getElementById('dashboard-btn').style.display = 'block';
-
-
-      const sidebarResponse = await fetch("/partials/sidebar.html");
+      let sidebarResponse = ''
+      if(data.user.role=='admin')
+      {
+        sidebarResponse = await fetch("/partials/sidebar.html")
+        document.querySelector(".dashboardLink a").href = 'admin-dashboard.html'
+      }
+      else{
+        sidebarResponse = await fetch("/partials/sidebar-user.html")
+        document.querySelector(".dashboardLink a").href = 'dashboard.html'
+      }
+      
+      
     const sidebarContent = await sidebarResponse.text();
     document.querySelector("#sidebar").innerHTML = sidebarContent;
 
+    if(data.user.picture)
+    {
+      document.querySelector("#sidePicture").src = data.user.picture
+
+    }
+    else{
+      document.querySelector("#sidePicture").src = 'https://placehold.co/100x100'
+
+    }
+
+    document.querySelector("#sideName").textContent = data.user.name
+      document.querySelector("#sideEmail").textContent = data.user.email
+      document.querySelector("#sideRole span").textContent = data.user.role.toUpperCase()
 
     } else {
       // User is not logged in, show login/register buttons
