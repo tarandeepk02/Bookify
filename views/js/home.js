@@ -138,6 +138,7 @@
 //     });
 //   };
 // })();
+import { addToCart } from './carts.js';
 document.addEventListener("DOMContentLoaded", async () => {
     try {
       // 1. loading from MongoDB
@@ -157,11 +158,47 @@ document.addEventListener("DOMContentLoaded", async () => {
               <h5 class="card-title">${book.title}</h5>
               <p class="card-text"><small>${book.authors}</small></p>
               <a href="book-details.html?id=${book._id}" class="btn btn-primary btn-sm">View Details</a>
-            </div>
+              <button class="btn btn-primary btn-sm add-to-cart" data-id="${book._id}" data-title="${book.title}" data-author="${book.authors}" data-price="${book.price}" data-image="${book.coverImage}" onclick="handleAddToCart(this)" >Add to Cart</button>
+              <button class="btn btn-primary btn-sm place-order" data-id="${book._id}" data-title="${book.title}" data-author="${book.authors}" data-price="${book.price}" data-image="${book.coverImage}" onclick="handleAddToCart(this)">Place Order</button>
+            
+              </div>
           </div>
         `;
         container.appendChild(card);
       });
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+              button.addEventListener('click', function(event) {
+                  event.preventDefault(); // Prevent default link behavior
+                  console.log("Add to Cart button clicked!"); // Check if the event fires
+                  const book = {
+                      id: this.dataset.id,
+                      title: this.dataset.title,
+                      author: this.dataset.author,
+                      price: this.dataset.price,
+                      image: this.dataset.image,
+                  };
+                  console.log("Book data:", book);
+                  addToCart(book);
+              });
+             
+          });
+          document.querySelectorAll('.place-order').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                console.log("Add to place button clicked!"); // Check if the event fires
+                const book = {
+                    id: this.dataset.id,
+                    title: this.dataset.title,
+                    author: this.dataset.author,
+                    price: this.dataset.price,
+                    image: this.dataset.image,
+                };
+                console.log("Book data:", book);
+                addToCart(book);
+                window.location.href = "./place-order.html";
+            });
+          });
+        
   
       // 2. Google Books Carousel
       await loadGoogleBooksCarousel();

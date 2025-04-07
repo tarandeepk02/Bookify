@@ -151,6 +151,33 @@ bookController.post('/editBookk', util.logRequest, upload.single('coverImage'), 
      { _id: new ObjectId(id) },
      { $set: updatedBook }  // Update the book fields
  );
+ bookController.post('/api/place-order',async (request,response,next)=>{
+     const orderItems= request.body;
+     try {
+         if (!orderItems || orderItems.length === 0) {
+             return response.status(400).json({ error: 'No items in order.' });
+         }
+ 
+         let collection = client.db().collection('orderLogs');
+         try {
+             // Insert many order items into the database
+             const result = await collection.insertMany(orderItems);
+ 
+             if (result && result.insertedCount > 0) {
+                 response.json({ message: 'Order placed successfully.', insertedIds: result.insertedIds });
+             } else {
+                 response.status(500).json({ error: 'Failed to place order.' });
+             }
+         } catch (insertError) {
+             console.error('Error inserting order items:', insertError);
+             response.status(500).json({ error: 'Failed to place order due to database error.' });
+         }
+ 
+     } catch (generalError) {
+         console.error('General error in place-order:', generalError);
+         response.status(500).json({ error: 'An unexpected error occurred.' });
+     }
+ });
 
  // Check if the book was found and updated
  if (result.matchedCount === 0) {
