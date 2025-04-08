@@ -169,6 +169,8 @@
         let total = document.querySelector("#total").textContent.replace('$', '');
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+        let since = new Date().toISOString();
+
         try {
             const response = await fetch('/checkout', {
                 method: 'POST',
@@ -182,7 +184,8 @@
                     subtotal,
                     shipping,
                     total,
-                    cart
+                    cart,
+                    since
                 })
             });
 
