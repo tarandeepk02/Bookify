@@ -59,7 +59,7 @@ An Online Book Store where users can browse books, add them to their cart, and p
     config.PASSOWRD = ''
     config.DATABASE = ''
     module.exports = config`
-})()
+    })()
    ```
 4. Run the application:
   ```
