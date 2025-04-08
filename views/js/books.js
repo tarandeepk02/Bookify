@@ -171,6 +171,8 @@
     const bookAdd = async (event) => {
         event.preventDefault()
 
+        document.getElementById("since").value = new Date().toISOString();
+
         const formData = new FormData(event.target)
         // for (let [key, value] of formData.entries()) {
         //     console.log(`${key}: ${value}`)

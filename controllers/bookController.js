@@ -49,13 +49,13 @@ bookController.post('/addBook', util.logRequest, upload.single('coverImage'), bo
         res.status(400).json({ errors: errors.mapped() })
     }
 
-    const { title, authors, isbn, publisher, publishedDate, genre, description, price, rating } = req.body
+    const { title, authors, isbn, publisher, publishedDate, genre, description, price, rating, since} = req.body
 
     const coverImage = req.file ? '/uploads/' + req.file.filename : ''
 
     try {
         let collection = client.db().collection('Books')
-        let book = { title, authors, isbn, publisher, publishedDate, genre, description, coverImage, price, rating }
+        let book = { title, authors, isbn, publisher, publishedDate, genre, description, coverImage, price, rating, since}
         await util.insertOne(collection, book)
         res.status(200).json({ status: 200, msg: "Book has been added successfully" })
     } catch (err) {
