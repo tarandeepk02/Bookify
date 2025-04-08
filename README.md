@@ -1,4 +1,4 @@
-# Online Book Store
+# Bookify - Online Book Store
 
 An Online Book Store where users can browse books, add them to their cart, and place orders. Admins can manage books and track sales. The application supports role-based permissions for users and admins, and logs all purchases in MongoDB.
 
