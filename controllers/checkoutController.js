@@ -65,4 +65,62 @@ checkoutController.post('/checkout', util.logRequest, orderValidationRules, asyn
     }
 });
 
+
+checkoutController.get('/orders', async (req, res, next) => {
+    try {
+        const userId = req.session?.user?.id;
+        if (!userId) {
+            return res.status(401).json({ status: 401, msg: "Unauthorized: not logged in" });
+        }
+
+        const collection = client.db().collection('Orders');
+        const orders = await collection.find({ userId: userId }).toArray();
+
+        return res.status(200).json({ status: 200, orders });
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        return res.status(500).json({ status: 500, msg: "Server error" });
+    }
+});
+
+checkoutController.get('/orders/:id', async (req, res, next) => {
+    try {
+      const orderId = req.params.id;
+      if (!ObjectId.isValid(orderId)) {
+        return res.status(400).json({ status: 400, msg: "Invalid order ID" });
+      }
+  
+      const collection = client.db().collection('Orders');
+      const order = await collection.findOne({ _id: new ObjectId(orderId) });
+  
+      if (!order) {
+        return res.status(404).json({ status: 404, msg: "Order not found" });
+      }
+  
+      res.status(200).json({ status: 200, order });
+    } catch (err) {
+      console.error("Error getting order:", err);
+      res.status(500).json({ status: 500, msg: "Server error" });
+    }
+  });
+  
+
+//for admin
+checkoutController.get('/orders/all', async (req, res, next) => {
+    try {
+    
+        if (!req.session?.user || req.session.user.role !== 'admin') {
+            return res.status(403).json({ status: 403, msg: "Forbidden: Admins only" });
+        }
+
+        const collection = client.db().collection('Orders');
+        const orders = await collection.find().toArray();
+
+        return res.status(200).json({ status: 200, orders });
+    } catch (error) {
+        console.error('Error fetching all orders:', error);
+        return res.status(500).json({ status: 500, msg: "Server error" });
+    }
+});
+
 module.exports = checkoutController
