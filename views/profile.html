@@ -8,6 +8,7 @@
     <title>Bookify :: Read More, Explore More</title>
     <link rel="stylesheet" href="css/journal.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.0/dist/sweetalert2.min.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
     <style>
 
@@ -38,18 +39,17 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label h6">Name<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" name="name" id="name" class="form-control" value="test" />
+                                        <input type="text" name="name" id="name" class="form-control" value="" required autocomplete="off" />
                                         <span id="errorName" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="authors" class="form-label h6">Email ID<span
                                                 class="text-danger">*</span></label>
-                                        <input type="email" name="email" id="email" class="form-control" value="test"
-                                            readonly disabled />
+                                        <input type="email" name="email" id="email" class="form-control" value=""
+                                            readonly disabled  autocomplete="off" />
                                         <span id="errorEmail" class="text-danger"></span>
                                     </div>
-
 
                                     <div class="col-md-6 mb-3">
                                         <label for="authors" class="form-label h6">Picture<span
@@ -63,7 +63,6 @@
                                         <input type="file" name="picture" id="picture" />
                                         <span id="errorPicture" class="text-danger"></span>
                                     </div>
-
 
                                     <div class="col-md-6 mb-5">
                                         <div class="card-footer text-center">
@@ -87,7 +86,7 @@
     <div id="bottom"></div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.0/dist/sweetalert2.min.js"></script>
     <script src="js/partials.js"></script>
 
     <script src="js/dashboard.js"></script>

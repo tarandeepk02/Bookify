@@ -72,11 +72,21 @@
     //-------------------------------------------------------------------------
     // update one matching document
     const updateOne = async (collection, query, updateDoc) => {
-        return collection.updateOne(query, { $set: updateDoc })
-            .then(res => console.log("Document updated", res))
-            .catch(err => {
-                console.log("Could not update one ", query, err.message);
-            });
+        try {
+            const result = await collection.updateOne(query, { $set: updateDoc });
+            if (!result) {
+                throw new Error('Update operation did not return a result');
+            }
+            if (result.matchedCount === 0) {
+                console.log(`No document matched the query: ${JSON.stringify(query)}`);
+                return null; // or you can throw an error depending on your logic
+            }
+            console.log("Document updated", result);
+            return result;
+        } catch (err) {
+            console.log("Could not update one ", query, err.message);
+            throw err;
+        }
     }
 
     //-------------------------------------------------------------------------
@@ -136,7 +146,8 @@
         findOne: findOne,
         insertOne: insertOne,
         insertMany: insertMany,
-        getMongoClient: getMongoClient
+        getMongoClient: getMongoClient,
+        updateOne: updateOne,
 
     }
     const moduleExport = util

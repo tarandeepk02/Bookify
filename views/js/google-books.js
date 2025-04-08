@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const books = data.items;
       const container = document.getElementById("googleBooksGrid");
   
-      container.innerHTML = ""; // 초기화
+      container.innerHTML = "";
   
       books.forEach(book => {
         const info = book.volumeInfo;

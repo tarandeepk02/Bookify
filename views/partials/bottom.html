@@ -26,14 +26,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="col-sm-12">
-
-
-
-
-            <div id="signup-error"></div>
-          </div>
-        <form action="register" method="post">
+        <form action="register" method="post" id="registerForm">
           <div class="form-group row mb-3">
             <label for="name" class="col-sm-4 col-form-label"
               >Name<span class="text-danger">*</span></label
@@ -46,6 +39,7 @@
                 name="name"
                 placeholder="Enter your name"
                 value=""
+                required
               />
             </div>
           </div>
@@ -61,6 +55,7 @@
                 name="email"
                 placeholder="Enter your email"
                 value=""
+                required
               />
             </div>
           </div>
@@ -81,6 +76,7 @@
                 placeholder="Enter Password"
                 required
                 value=""
+                required
               />
             </div>
           </div>
@@ -99,6 +95,7 @@
                 minlength="8"
                 maxlength="20"
                 value=""
+                required
               />
             </div>
           </div>
@@ -108,7 +105,7 @@
               <button type="button" class="btn btn-outline-secondary" name="clear" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary" id="signup">
+              <button type="submit" class="btn btn-primary">
                 Sign Up
               </button>
             </div>
@@ -140,7 +137,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="loginForm">
           <div class="form-group row mb-3">
             <label for="email" class="col-sm-3 col-form-label">Email ID<span class="text-danger">*</span></label>
             <div class="col-sm-9">
@@ -149,6 +146,7 @@
                 class="form-control"
                 id="lemail"
                 placeholder="Enter your email"
+                required
               />
             </div>
           </div>
@@ -162,6 +160,7 @@
                 class="form-control"
                 id="lpassword"
                 placeholder="Type your password"
+                required
               />
             </div>
           </div>
@@ -170,13 +169,10 @@
               <button type="button" class="btn btn-outline-secondary" name="clear" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary" id="signin">
+              <button type="submit" class="btn btn-primary">
                 Login
               </button>
-            </div>
-            <div class="col-sm-12">
-              <span id="signin-error"></span>
-            </div>
+            </div>            
           </div>
         </form>
       </div>

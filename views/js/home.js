@@ -1,4 +1,25 @@
-//import { addToCart } from './carts.js';
+async function loadBooks(book,container) {
+  const card = document.createElement("div");
+  card.className = "col-md-3 mb-4";
+  const cart = loadCart(); 
+  const isInCart = cart.some(item => item.id === book._id);
+
+  card.innerHTML = `
+    <div class="card h-100 shadow-sm">
+      <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height:200px; object-fit:cover;">
+      <div class="card-body">
+        <h5 class="card-title">${book.title}</h5>
+        <p class="card-text"><small>${book.authors}</small></p>
+        </div>
+        <div class="card-footer d-flex justify-content-end gap-1">
+        <a href="book-details.html?id=${book._id}" class="btn btn-dark btn-sm"><i class="bi bi-eye"></i> View</a>
+        <button class="btn btn-primary btn-sm add-to-cart" data-id="${book._id}" data-title="${book.title}" data-author="${book.authors}" data-price="${book.price}" data-image="${book.coverImage}" onclick="handleAddToCart(this)" ${isInCart ? 'disabled' : ''}><i class="bi bi-cart"></i> ${isInCart ? 'Added to Cart' : 'Add to Cart'}</button>        
+      
+        </div>
+    </div>
+  `;
+  container.appendChild(card);
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -9,66 +30,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       const container = document.getElementById("bookCards");
   
       limitedBooks.forEach(book => {
-        const card = document.createElement("div");
-        card.className = "col-md-3 mb-4";
+        loadBooks(book,container)
+      }); 
+      
+      const allBooks = books;
+      const container1 = document.getElementById("bookCardsAll");
   
-
-        const cart = loadCart(); // Get the current cart from localStorage
-
-        // Check if the book is already in the cart
-        const isInCart = cart.some(item => item.id === book._id);
-
-
-
-        card.innerHTML = `
-          <div class="card h-100 shadow-sm">
-            <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height:200px; object-fit:cover;">
-            <div class="card-body">
-              <h5 class="card-title">${book.title}</h5>
-              <p class="card-text"><small>${book.authors}</small></p>
-              </div>
-              <div class="card-footer d-flex justify-content-end gap-1">
-              <a href="book-details.html?id=${book._id}" class="btn btn-dark btn-sm"><i class="bi bi-eye"></i> View</a>
-              <button class="btn btn-primary btn-sm add-to-cart" data-id="${book._id}" data-title="${book.title}" data-author="${book.authors}" data-price="${book.price}" data-image="${book.coverImage}" onclick="handleAddToCart(this)" ${isInCart ? 'disabled' : ''}><i class="bi bi-cart"></i> ${isInCart ? 'Added to Cart' : 'Add to Cart'}</button>        
-            
-              </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-        // document.querySelectorAll('.add-to-cart').forEach(button => {
-        //       button.addEventListener('click', function(event) {
-        //           event.preventDefault(); // Prevent default link behavior
-        //           console.log("Add to Cart button clicked!"); // Check if the event fires
-        //           const book = {
-        //               id: this.dataset.id,
-        //               title: this.dataset.title,
-        //               author: this.dataset.author,
-        //               price: this.dataset.price,
-        //               image: this.dataset.image,
-        //           };
-        //           console.log("Book data:", book);
-        //           addToCart(book);
-        //       });
-             
-        //   });
-        //   document.querySelectorAll('.place-order').forEach(button => {
-        //     button.addEventListener('click', function(event) {
-        //         event.preventDefault(); // Prevent default link behavior
-        //         console.log("Add to place button clicked!"); // Check if the event fires
-        //         const book = {
-        //             id: this.dataset.id,
-        //             title: this.dataset.title,
-        //             author: this.dataset.author,
-        //             price: this.dataset.price,
-        //             image: this.dataset.image,
-        //         };
-        //         console.log("Book data:", book);
-        //         addToCart(book);
-        //         window.location.href = "./place-order.html";
-        //     });
-        //   });
-        
+      allBooks.forEach(book => {
+        loadBooks(book,container1)
+      }); 
   
       // 2. Google Books Carousel
       await loadGoogleBooksCarousel();

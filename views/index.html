@@ -1,155 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookify :: Read More, Explore More</title>
-    <link rel="stylesheet" href="css/journal.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-    <style>
-      
-      #herosection .row
-      {
-        background-color:#F2F2F2;
-      }
-      .carousel-control-prev, .carousel-control-next
-      {
-        width: 4%;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div id="top"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookify :: Read More, Explore More</title>
+  <link rel="stylesheet" href="css/journal.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.0/dist/sweetalert2.min.css">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+  <style>
+    #herosection .row {
+      background-color: #F2F2F2;
+    }
 
-    <main role="main">
-      <!-- CAROUSEL SLIDER -->
-      <div id="herosection" class="carousel slide mb-5" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">           
-            <div class="row">
-              <div class="col-12 col-md-6 order-1 order-md-0 align-self-md-end">
-                <div class="row py-3 py-sm-5 py-xl-9 mt-md-10 justify-content-sm-center">
-                  <div class="col-12 col-sm-10">
-                    <h2 class="display-3 fw-bolder mb-4 text-dark">Discover Your Next Favorite Book!</h2>
-                    <div class="row">
-                      <div class="col-12 col-xxl-8">
-                        <p class="fs-5 mb-5 text-dark">Explore a wide range of books, from bestsellers to hidden gems, and enjoy a seamless shopping experience. Start your reading adventure today with Bookify.</p>
-                      </div>
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 4%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="top"></div>
+
+  <main role="main">
+    <!-- CAROUSEL SLIDER -->
+    <div id="herosection" class="carousel slide mb-5" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-12 col-md-6 order-1 order-md-0 align-self-md-end">
+              <div class="row py-3 py-sm-5 py-xl-9 mt-md-10 justify-content-sm-center">
+                <div class="col-12 col-sm-10">
+                  <h2 class="display-3 fw-bolder mb-4 text-dark">Discover Your Next Favorite Book!</h2>
+                  <div class="row">
+                    <div class="col-12 col-xxl-8">
+                      <p class="fs-5 mb-5 text-dark">Explore a wide range of books, from bestsellers to hidden gems, and
+                        enjoy a seamless shopping experience. Start your reading adventure today with Bookify.</p>
                     </div>
-                    <div class="d-grid gap-2 d-sm-flex">
-                      <a href="books.html" class="btn btn-primary bsb-btn-2xl rounded-pill btn-lg"><i class="bi bi-book-half"></i> Explore Now</a>
-                    </div>
+                  </div>
+                  <div class="d-grid gap-2 d-sm-flex">
+                    <a href="bookify-books.html" class="btn btn-primary bsb-btn-2xl rounded-pill btn-lg"><i
+                        class="bi bi-book-half"></i> Explore Now</a>
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-md-6 p-0">
-                <img class="img-fluid w-100 h-100 object-fit-cover" src="img/banners/banner1.png">
-              </div>
+            </div>
+            <div class="col-12 col-md-6 p-0">
+              <img class="img-fluid w-100 h-100 object-fit-cover" src="img/banners/banner1.png">
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-12 col-md-6 order-1 order-md-0 align-self-md-end">
-                <div class="row py-3 py-sm-5 py-xl-9 mt-md-10 justify-content-sm-center">
-                  <div class="col-12 col-sm-10">
-                    <h2 class="display-3 fw-bolder mb-4 text-dark">Unlock a World of Knowledge!</h2>
-                    <div class="row">
-                      <div class="col-12 col-xxl-8">
-                        <p class="fs-5 mb-5 text-dark">Dive into various genres and explore insightful reads that enhance your understanding and spark your curiosity. Join Bookify today and expand your reading horizon.</p>
-                      </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-12 col-md-6 order-1 order-md-0 align-self-md-end">
+              <div class="row py-3 py-sm-5 py-xl-9 mt-md-10 justify-content-sm-center">
+                <div class="col-12 col-sm-10">
+                  <h2 class="display-3 fw-bolder mb-4 text-dark">Unlock a World of Knowledge!</h2>
+                  <div class="row">
+                    <div class="col-12 col-xxl-8">
+                      <p class="fs-5 mb-5 text-dark">Dive into various genres and explore insightful reads that enhance
+                        your understanding and spark your curiosity. Join Bookify today and expand your reading horizon.
+                      </p>
                     </div>
-                    <div class="d-grid gap-2 d-sm-flex">
-                      <a href="google-books.html" class="btn btn-primary bsb-btn-2xl rounded-pill btn-lg"><i class="bi bi-book-half"></i> Explore Google Books</a>
-                    </div>
+                  </div>
+                  <div class="d-grid gap-2 d-sm-flex">
+                    <a href="google-books.html" class="btn btn-primary bsb-btn-2xl rounded-pill btn-lg"><i
+                        class="bi bi-book-half"></i> Explore Google Books</a>
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-md-6 p-0">
-                <img class="img-fluid w-100 h-100 object-fit-cover" src="img/banners/banner1.png">
-              </div>
+            </div>
+            <div class="col-12 col-md-6 p-0">
+              <img class="img-fluid w-100 h-100 object-fit-cover" src="img/banners/banner1.png">
             </div>
           </div>
-          
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#herosection"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#herosection"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon"></span>
-        </button>
-      </div>
-<div class="clearfix"></div>
-      <!-- [2] Books Collection (from MongoDB) -->
-      <div class="container my-5">
-        <div class="text-center mb-4">
-          <h2 class="text-center mt-4">Every <span class="text-primary">Book</span> Is a New Adventure </h2>
-          <p class="lead">Dive into stories that captivate, educate, and inspire.</p>
-        </div>
-        <div id="bookCards" class="row mt-4">
-          <!-- JS -->
         </div>
 
-        <div class="text-center mt-4">
-          <a href="bookify-books.html" class="btn btn-outline-primary">Explore All Books</a>
-        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#herosection" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#herosection" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+    <div class="clearfix"></div>
+    <!-- [2] Books Collection (from MongoDB) -->
+    <div class="container my-5">
+      <div class="text-center mb-4">
+        <h2 class="text-center mt-4">Every <span class="text-primary">Book</span> Is a New Adventure </h2>
+        <p class="lead">Dive into stories that captivate, educate, and inspire.</p>
+      </div>
+      <div id="bookCards" class="row mt-4">
+        <!-- JS -->
       </div>
 
-      <!-- [3] Google Books Carousel (from Open API) -->
-      <div class="container my-2 mb-5">
-        <div class="mb-4 text-center">
+      <div class="text-center mt-4">
+        <a href="bookify-books.html" class="btn btn-outline-primary">Explore All Books</a>
+      </div>
+    </div>
+
+    <!-- [3] Google Books Carousel (from Open API) -->
+    <div class="container my-2 mb-5">
+      <div class="mb-4 text-center">
         <h2 class="">Explore Books <span class="text-primary">Powered by Google</span></h2>
         <p class="lead">Browse a wide selection of titles fetched live from the Google Books Library.</p>
       </div>
-        <div
-          id="googleBooksCarousel"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner" id="googleBooksInner">
-            <!-- JS slide-->
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#googleBooksCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon btn btn-sm btn-primary"></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#googleBooksCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon btn btn-sm btn-primary"></span>
-          </button>
+      <div id="googleBooksCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="googleBooksInner">
+          <!-- JS slide-->
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#googleBooksCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon btn btn-sm btn-primary"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#googleBooksCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon btn btn-sm btn-primary"></span>
+        </button>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <div id="bottom"></div>
+  <div id="bottom"></div>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/partials.js"></script>
-    <script src="js/home.js"></script>
-    <script src="js/carts.js"></script>
-    
-  </body>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.0/dist/sweetalert2.min.js"></script>
+  <script src="js/partials.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/carts.js"></script>
+
+</body>
+
 </html>
