@@ -1,144 +1,5 @@
-// (() => {
-//   const setCopyrightYear = () => {
-//     document.querySelector("footer>kbd>span").innerHTML =
-//       new Date().getFullYear();
-//   };
-//   async function postData(url = "", data = {}) {
-//     // Default options are marked with *
-//     const response = await fetch(url, {
-//       method: "POST", // *GET, POST, PUT, DELETE, etc.
-//       mode: "cors", // no-cors, *cors, same-origin
-//       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-//       credentials: "same-origin", // include, *same-origin, omit
-//       headers: {
-//         "Content-Type": "application/json",
-//         // 'Content-Type': 'application/x-www-form-urlencoded',
-//       },
-//       redirect: "follow", // manual, *follow, error
-//       referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-//       body: JSON.stringify(data), // body data type must match "Content-Type" header
-//     });
+//import { addToCart } from './carts.js';
 
-//     const reply = await response.json();
-//     //console.log("Datadata="+JSON.stringify(reply)+"response="+reply.status)
-//     return reply; // parses JSON response into native JavaScript objects
-//   }
-
-//   const register = async (event) => {
-//     // prevent refreshing the page
-//     event.preventDefault();
-//     let name = document.querySelector("#name").value;
-//     let email = document.querySelector("#email").value;
-//     let password = document.querySelector("#password").value;
-//     let confirm = document.querySelector("#confirm").value;
-//     if (password === confirm) {      
-
-//       let response = await postData("/register", {
-//         name,
-//         email,
-//         password,
-//         confirm,
-//       });
-
-//       if (response && response.status === 200) {
-//         window.location.href = "/"; 
-//       } else {
-//         document.querySelector(
-//           "#signup-error"
-//         ).innerHTML = `<div class="alert alert-dismissible alert-danger">${
-//             response.msg || "An error occurred. Please try again."
-//         }</div>`;
-//       }
-//     } else {
-//       document.querySelector(
-//         "#signup-error"
-//       ).innerHTML = `<div class="alert alert-dismissible alert-primary">Passwords do not match. Re-enter your password</div>`;
-//     }
-//   };
-//   const login = async (event) => {
-//     event.preventDefault();
-//     let email = document.querySelector("#lemail").value;
-//     let password = document.querySelector("#lpassword").value;   
-    
-
-//     let response = await postData("/login", {        
-//         email,
-//         password
-//       });
-
-//     console.log("Data=" + JSON.stringify(response));
-
-//     if (response && response.status === 200) {
-//         window.location.href = "/admin-dashboard.html"; 
-//       } else {
-//         document.querySelector(
-//           "#signup-error"
-//         ).innerHTML = `<div class="alert alert-dismissible alert-danger">${
-//             response.msg || "An error occurred. Please try again."
-//         }</div>`;
-//       }
-
-//   };
-
-
-//   // Check session to toggle login/register and dashboard buttons
-//   const checkSession = async () => {
-//     let response = await fetch("/session-info", {
-//         method: "GET", // Use GET method
-//         headers: {
-//           "Content-Type": "application/json", // If necessary
-//         },
-//       });
-//       let data = await response.json();
-
-//       //console.log("response=" + JSON.stringify(data));
-
-//     if (data && data.status === 200 && data.user) {
-//       // User is logged in, show dashboard button and hide login/register
-//       document.getElementById('auth-buttons').style.display = 'none';
-//       document.getElementById('dashboard-btn').style.display = 'block';
-
-
-//       const sidebarResponse = await fetch("/partials/sidebar.html");
-//     const sidebarContent = await sidebarResponse.text();
-//     document.querySelector("#sidebar").innerHTML = sidebarContent;
-
-
-//     } else {
-//       // User is not logged in, show login/register buttons
-//       document.getElementById('auth-buttons').style.display = 'block';
-//       document.getElementById('dashboard-btn').style.display = 'none';
-//     }
-//   };
-
-//   // Function to load and inject the header and footer HTML
-//   const loadHeaderFooter = async () => {
-//     // Load header content dynamically
-//     const headerResponse = await fetch("/partials/top.html");
-//     const headerContent = await headerResponse.text();
-//     document.querySelector("#top").innerHTML = headerContent;
-
-//     // Load footer content dynamically
-//     const footerResponse = await fetch("/partials/bottom.html");
-//     const footerContent = await footerResponse.text();
-//     document.querySelector("#bottom").innerHTML = footerContent;
-//     setCopyrightYear();
-//   };
-
-//   window.onload = () => {
-//     // Load the header and footer content
-
-//     loadHeaderFooter().then(() => {
-
-//       checkSession()
-//       // Attach event listeners after the content is fully loaded
-//       document.querySelector("#signup")?.addEventListener("click", register);
-//       document.querySelector("#signin")?.addEventListener("click", login);
-
-//     });
-//   };
-// })();
-import { addToCart } from './carts.js';
 document.addEventListener("DOMContentLoaded", async () => {
     try {
       // 1. loading from MongoDB
@@ -151,53 +12,62 @@ document.addEventListener("DOMContentLoaded", async () => {
         const card = document.createElement("div");
         card.className = "col-md-3 mb-4";
   
+
+        const cart = loadCart(); // Get the current cart from localStorage
+
+        // Check if the book is already in the cart
+        const isInCart = cart.some(item => item.id === book._id);
+
+
+
         card.innerHTML = `
           <div class="card h-100 shadow-sm">
             <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height:200px; object-fit:cover;">
             <div class="card-body">
               <h5 class="card-title">${book.title}</h5>
               <p class="card-text"><small>${book.authors}</small></p>
-              <a href="book-details.html?id=${book._id}" class="btn btn-primary btn-sm">View Details</a>
-              <button class="btn btn-primary btn-sm add-to-cart" data-id="${book._id}" data-title="${book.title}" data-author="${book.authors}" data-price="${book.price}" data-image="${book.coverImage}" onclick="handleAddToCart(this)" >Add to Cart</button>
-              <button class="btn btn-primary btn-sm place-order" data-id="${book._id}" data-title="${book.title}" data-author="${book.authors}" data-price="${book.price}" data-image="${book.coverImage}" onclick="handleAddToCart(this)">Place Order</button>
+              </div>
+              <div class="card-footer d-flex justify-content-end gap-1">
+              <a href="book-details.html?id=${book._id}" class="btn btn-dark btn-sm"><i class="bi bi-eye"></i> View</a>
+              <button class="btn btn-primary btn-sm add-to-cart" data-id="${book._id}" data-title="${book.title}" data-author="${book.authors}" data-price="${book.price}" data-image="${book.coverImage}" onclick="handleAddToCart(this)" ${isInCart ? 'disabled' : ''}><i class="bi bi-cart"></i> ${isInCart ? 'Added to Cart' : 'Add to Cart'}</button>        
             
               </div>
           </div>
         `;
         container.appendChild(card);
       });
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-              button.addEventListener('click', function(event) {
-                  event.preventDefault(); // Prevent default link behavior
-                  console.log("Add to Cart button clicked!"); // Check if the event fires
-                  const book = {
-                      id: this.dataset.id,
-                      title: this.dataset.title,
-                      author: this.dataset.author,
-                      price: this.dataset.price,
-                      image: this.dataset.image,
-                  };
-                  console.log("Book data:", book);
-                  addToCart(book);
-              });
+        // document.querySelectorAll('.add-to-cart').forEach(button => {
+        //       button.addEventListener('click', function(event) {
+        //           event.preventDefault(); // Prevent default link behavior
+        //           console.log("Add to Cart button clicked!"); // Check if the event fires
+        //           const book = {
+        //               id: this.dataset.id,
+        //               title: this.dataset.title,
+        //               author: this.dataset.author,
+        //               price: this.dataset.price,
+        //               image: this.dataset.image,
+        //           };
+        //           console.log("Book data:", book);
+        //           addToCart(book);
+        //       });
              
-          });
-          document.querySelectorAll('.place-order').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                console.log("Add to place button clicked!"); // Check if the event fires
-                const book = {
-                    id: this.dataset.id,
-                    title: this.dataset.title,
-                    author: this.dataset.author,
-                    price: this.dataset.price,
-                    image: this.dataset.image,
-                };
-                console.log("Book data:", book);
-                addToCart(book);
-                window.location.href = "./place-order.html";
-            });
-          });
+        //   });
+        //   document.querySelectorAll('.place-order').forEach(button => {
+        //     button.addEventListener('click', function(event) {
+        //         event.preventDefault(); // Prevent default link behavior
+        //         console.log("Add to place button clicked!"); // Check if the event fires
+        //         const book = {
+        //             id: this.dataset.id,
+        //             title: this.dataset.title,
+        //             author: this.dataset.author,
+        //             price: this.dataset.price,
+        //             image: this.dataset.image,
+        //         };
+        //         console.log("Book data:", book);
+        //         addToCart(book);
+        //         window.location.href = "./place-order.html";
+        //     });
+        //   });
         
   
       // 2. Google Books Carousel

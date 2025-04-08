@@ -21,7 +21,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto me-1 mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.html"
               >Home</a
@@ -47,6 +47,19 @@
               >Contact Us</a
             >
           </li>
+
+          <li class="nav-item dropdown" id="cart-btn">
+            <a class="btn btn-outline-dark mt-1 position-relative me-3" href="#" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-handbag-fill"></i>
+              <span id="cart-counter" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" style="font-size: 12px;padding: 6px 8px;">
+                0
+              </span>
+            </a>
+            <ul id="cart-items-list" class="dropdown-menu dropdown-menu-end p-3 cart-items-list" aria-labelledby="cartDropdown" style="min-width: 400px;">
+              
+            </ul>
+          </li>
+          
 
           <li class="nav-item dropdown" id="dashboard-btn">
               <a class="btn btn-dark mt-1 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"

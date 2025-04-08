@@ -1,4 +1,5 @@
 (() => {
+  const pageName = window.location.pathname.split('/').pop();
   const setCopyrightYear = () => {
     document.querySelector("footer>kbd>span").innerHTML =
       new Date().getFullYear();
@@ -69,6 +70,11 @@
     console.log("Data=" + JSON.stringify(response));
 
     if (response && response.status === 200) {
+      if(localStorage.getItem('cart'))
+      {
+        window.location.href = "/index.html"; 
+      }
+      else{
       if(response.userRole=='admin')
       {
         window.location.href = "/admin-dashboard.html"; 
@@ -76,7 +82,8 @@
       else{
         window.location.href = "/dashboard.html"; 
       }
-      } else {
+      }
+     } else {
         document.querySelector(
           "#signup-error"
         ).innerHTML = `<div class="alert alert-dismissible alert-danger">${
@@ -100,6 +107,20 @@
       console.log("response=" + JSON.stringify(data));
 
     if (data && data.status === 200 && data.user) {
+
+
+      //console.log("my page="+pageName);
+      
+      if(pageName=='place-order.html')
+      {
+        
+        document.querySelector("#checkoutName").value = data.user.name
+        document.querySelector("#checkoutEmail").value = data.user.email
+      }
+
+
+
+
       // User is logged in, show dashboard button and hide login/register
       document.getElementById('auth-buttons').style.display = 'none';
       document.getElementById('dashboard-btn').style.display = 'block';
@@ -128,9 +149,11 @@
 
     }
 
-    document.querySelector("#sideName").textContent = data.user.name
+      document.querySelector("#sideName").textContent = data.user.name
       document.querySelector("#sideEmail").textContent = data.user.email
       document.querySelector("#sideRole span").textContent = data.user.role.toUpperCase()
+
+      
 
     } else {
       // User is not logged in, show login/register buttons
@@ -145,6 +168,14 @@
     const headerResponse = await fetch("/partials/top.html");
     const headerContent = await headerResponse.text();
     document.querySelector("#top").innerHTML = headerContent;
+
+     // Get the current page name
+
+    console.log("Current Page:", pageName);
+    if(pageName=='place-order.html' || pageName=='success.html')
+    {
+      document.getElementById('cart-btn').style.display = 'none';
+    }
 
     // Load footer content dynamically
     const footerResponse = await fetch("/partials/bottom.html");

@@ -21,6 +21,7 @@ const homeController = require('../controllers/homeController')
 const memberController = require('../controllers/memberController')
 const bookController = require('../controllers/bookController')
 const dashboardController = require('../controllers/dashboardController')
+const checkoutController = require('../controllers/checkoutController')
 //----------------------------------------------------------------
 
 
@@ -100,6 +101,7 @@ server.use(homeController)
 server.use(memberController)
 server.use(bookController)
 server.use(dashboardController)
+server.use(checkoutController)
 server.get('/logs', async (req, res, next) => {
   util.logRequest(req, res, next)
 })
