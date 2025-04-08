@@ -171,6 +171,9 @@
     const headerContent = await headerResponse.text()
     document.querySelector("#top").innerHTML = headerContent
 
+    // adding-top (as much as the header height)
+    document.body.style.paddingTop = "80px"   
+    
     //console.log("Current Page:", pageName)
     if (pageName == 'index.html' || pageName == 'about.html' || pageName == 'bookify-books.html' || pageName == 'google-books.html' || pageName == 'contact.html') {
       document.getElementById('cart-btn').style.display = 'block'
