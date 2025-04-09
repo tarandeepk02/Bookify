@@ -185,8 +185,14 @@
     const footerResponse = await fetch("/partials/bottom.html")
     const footerContent = await footerResponse.text()
     document.querySelector("#bottom").innerHTML = footerContent
-    setCopyrightYear()
-  }
+    // setCopyrightYear()
+
+    setTimeout(() => {
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+    }, 100);  }
 
   window.addEventListener('load', () => {
 
