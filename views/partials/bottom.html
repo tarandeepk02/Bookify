@@ -1,103 +1,80 @@
-<!-- <footer class="bg-dark text-center h6 pt-3 pb-3 mb-0"> -->
-<footer class="d-none">
-  <kbd role="contentinfo"
-    >&copy;<span></span> Bookify. All rights reserved.</kbd
-  >
+<footer class="bg-dark text-white pt-4 mt-5 border-top">
+  <div class="container">
+    <div class="row text-center text-md-start align-items-center">
+      <!-- col-md-3: Logo -->
+      <div class="col-md-3 mb-4 mb-md-0 d-flex justify-content-center">
+        <img src="img/logo-light.png" alt="Bookify Logo" width="200">
+      </div>
+
+      <!-- col-md-6: About Content -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h5>About <span class="text-primary">Bookify</span>!</h5>
+        <p class="mb-0">
+          Our platform is designed for readers of all kinds. Whether you're looking for the latest bestseller, timeless classics, or niche genres, Bookify offers a wide range of books at your fingertips. You can easily browse our collection.
+        </p>
+      </div>
+
+      <!-- col-md-3: Navigation Links -->
+      <div class="col-md-3">
+        <h5 class="mb-3">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="pb-1"><a href="index.html" class="text-decoration-none text-light"><i class="bi bi-arrow-right-circle-fill text-primary"></i> Home</a></li>
+          <li class="pb-1"><a href="about.html" class="text-decoration-none text-light"><i class="bi bi-arrow-right-circle-fill text-primary"></i> About Us</a></li>
+          <li class="pb-1"><a href="bookify-books.html" class="text-decoration-none text-light"><i class="bi bi-arrow-right-circle-fill text-primary"></i> Books</a></li>
+          <li class="pb-1"><a href="google-books.html" class="text-decoration-none text-light"><i class="bi bi-arrow-right-circle-fill text-primary"></i> Google Books</a></li>
+          <li class="pb-1"><a href="contact.html" class="text-decoration-none text-light"><i class="bi bi-arrow-right-circle-fill text-primary"></i> Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center mt-3 pb-3">
+      <div role="contentinfo">&copy;<span id="year"></span> Bookify. All Rights Reserved.</div>
+    </div>
+  </div>
 </footer>
 
 <!-- Register Modal -->
-<div
-  class="modal fade"
-  id="registerModal"
-  tabindex="-1"
-  aria-labelledby="registerModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="registerModalLabel">
           Don't have an account? Sign Up
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="register" method="post" id="registerForm">
           <div class="form-group row mb-3">
-            <label for="name" class="col-sm-4 col-form-label"
-              >Name<span class="text-danger">*</span></label
-            >
+            <label for="name" class="col-sm-4 col-form-label">Name<span class="text-danger">*</span></label>
             <div class="col-sm-8">
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                placeholder="Enter your name"
-                value=""
-                required
-              />
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value=""
+                required />
             </div>
           </div>
           <div class="form-group row mb-3">
-            <label for="email" class="col-sm-4 col-form-label"
-              >Email ID<span class="text-danger">*</span></label
-            >
+            <label for="email" class="col-sm-4 col-form-label">Email ID<span class="text-danger">*</span></label>
             <div class="col-sm-8">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                value=""
-                required
-              />
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value=""
+                required />
             </div>
           </div>
           <div class="form-group row mb-3">
-            <label for="password" class="col-sm-4 col-form-label"
-              >Password<span class="text-danger">*</span></label
-            >
+            <label for="password" class="col-sm-4 col-form-label">Password<span class="text-danger">*</span></label>
             <div class="col-sm-8">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                title="Password must contain at least 8 characters"
-                minlength="8"
-                maxlength="20"
-                class="form-control"
-                placeholder="Enter Password"
-                required
-                value=""
-                required
-              />
+              <input type="password" class="form-control" id="password" name="password"
+                title="Password must contain at least 8 characters" minlength="8" maxlength="20" class="form-control"
+                placeholder="Enter Password" required value="" required />
             </div>
           </div>
           <div class="form-group row mb-3">
-            <label for="confirm" class="col-sm-4 col-form-label"
-              >Confirm Password<span class="text-danger">*</span></label
-            >
+            <label for="confirm" class="col-sm-4 col-form-label">Confirm Password<span
+                class="text-danger">*</span></label>
             <div class="col-sm-8">
-              <input
-                type="password"
-                class="form-control"
-                id="confirm"
-                name="confirm"
-                placeholder="Confirm your password"
-                title="Password must contain at least 8 characters"
-                minlength="8"
-                maxlength="20"
-                value=""
-                required
-              />
+              <input type="password" class="form-control" id="confirm" name="confirm"
+                placeholder="Confirm your password" title="Password must contain at least 8 characters" minlength="8"
+                maxlength="20" value="" required />
             </div>
           </div>
 
@@ -110,7 +87,7 @@
                 Sign Up
               </button>
             </div>
-            
+
           </div>
         </form>
       </div>
@@ -119,50 +96,25 @@
 </div>
 
 <!-- Login Modal -->
-<div
-  class="modal fade"
-  id="loginModal"
-  tabindex="-1"
-  aria-labelledby="loginModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="loginModalLabel">Already have an account? Login</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form id="loginForm">
           <div class="form-group row mb-3">
             <label for="email" class="col-sm-3 col-form-label">Email ID<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input
-                type="email"
-                class="form-control"
-                id="lemail"
-                placeholder="Enter your email"
-                required
-              />
+              <input type="email" class="form-control" id="lemail" placeholder="Enter your email" required />
             </div>
           </div>
           <div class="form-group row mb-3">
-            <label for="password" class="col-sm-3 col-form-label"
-              >Password<span class="text-danger">*</span></label
-            >
+            <label for="password" class="col-sm-3 col-form-label">Password<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input
-                type="password"
-                class="form-control"
-                id="lpassword"
-                placeholder="Type your password"
-                required
-              />
+              <input type="password" class="form-control" id="lpassword" placeholder="Type your password" required />
             </div>
           </div>
           <div class="form-group row">
@@ -173,48 +125,10 @@
               <button type="submit" class="btn btn-primary">
                 Login
               </button>
-            </div>            
+            </div>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-<footer class="bg-light text-dark pt-4 mt-5 border-top">
-  <div class="container">
-    <div class="row text-center text-md-start align-items-center">
-      <!-- col-md-3: Logo -->
-      <div class="col-md-3 mb-4 mb-md-0 d-flex justify-content-center">
-        <img src="img/logo.png" alt="Bookify Logo" width="100">
-      </div>
-
-      <!-- col-md-6: About Content -->
-      <div class="col-md-6 mb-4 mb-md-0">
-        <h5>About Bookify</h5>
-        <p class="mb-0">
-          Bookify is your digital gateway to a world of books. Whether you're into science,
-          history, or fiction, explore and enjoy reading like never before!
-        </p>
-      </div>
-
-      <!-- col-md-3: Navigation Links -->
-      <div class="col-md-3">
-        <h5>Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="index.html" class="text-decoration-none text-danger">Home</a></li>
-          <li><a href="about.html" class="text-decoration-none text-danger">About Us</a></li>
-          <li><a href="bookify-books.html" class="text-decoration-none text-danger">Books</a></li>
-          <li><a href="google-books.html" class="text-decoration-none text-danger">Google Books</a></li>
-          <li><a href="contact.html" class="text-decoration-none text-danger">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Copyright -->
-    <div class="text-center mt-3">
-      <kbd role="contentinfo">&copy;<span id="year"></span> Bookify. All rights reserved.</kbd>
-    </div>
-  </div>
-</footer>
-

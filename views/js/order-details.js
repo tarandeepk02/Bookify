@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       container.appendChild(row);
     });
 
-    document.getElementById("orderName").textContent = order.name;
+    document.getElementById("orderName").textContent = order.checkoutName;
     document.getElementById("orderDate").textContent = new Date(order.since).toLocaleDateString();
     document.getElementById("orderTotal").textContent = `$${order.total}`;
   } catch (err) {

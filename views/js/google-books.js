@@ -1,11 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-    fetch("/partials/top.html")
-      .then(res => res.text())
-      .then(html => document.querySelector("#top").innerHTML = html);
-  
-    fetch("/partials/bottom.html")
-      .then(res => res.text())
-      .then(html => document.querySelector("#bottom").innerHTML = html);
+document.addEventListener("DOMContentLoaded", () => {  
   
     loadGoogleBooksGrid();
   });
@@ -30,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const link = info.infoLink || "#";
   
         const col = document.createElement("div");
-        col.className = "col-md-3 mb-4";
+        col.className = "col-sm-6 col-lg-3 mb-4";
         col.innerHTML = `
           <a href="${link}" target="_blank" style="text-decoration: none; color: inherit;">
             <div class="card h-100 shadow-sm">

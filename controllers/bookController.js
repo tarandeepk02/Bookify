@@ -8,25 +8,6 @@ const { ObjectId } = require('mongodb')
 const { body, validationResult } = require('express-validator')
 const upload = require('../models/imageUpload')
 
-// Authentication & Authorization Middleware
-const authenticateUser = (req, res, next) => {
-    if (req.user == null) {
-        res.status(403)
-        return res.send('You need to be logged in')
-    } else {
-        console.log(req.user)
-    }
-    next()
-}
-const authenticateRole = (role, req, res, next) => {
-    return (req, res, next) => {
-        if (req.user.role == role) {
-            res.status(401)
-            return res.send('Not authorized')
-        }
-
-    }
-}
 // Validation rules for the book form data
 const bookValidationRules = [
     body('title').notEmpty().withMessage('Title is required'),
@@ -40,7 +21,7 @@ const bookValidationRules = [
 ]
 
 // HTTP POST to add a new book
-bookController.post('/addBook', util.logRequest, upload.single('coverImage'), bookValidationRules, async (req, res, next) => {
+bookController.post('/addBook', util.logRequest, util.authenticateUser, util.authenticateRole('admin'), upload.single('coverImage'), bookValidationRules, async (req, res, next) => {
     // Check for validation errors
     //console.log('Request Body:', req.body)
     const errors = validationResult(req)
@@ -64,7 +45,7 @@ bookController.post('/addBook', util.logRequest, upload.single('coverImage'), bo
 })
 
 // HTTP POST to edit an existing book
-bookController.post('/editBookk', util.logRequest, upload.single('coverImage'), bookValidationRules, async (req, res, next) => {
+bookController.post('/editBookk', util.logRequest, util.authenticateUser, util.authenticateRole('admin'), upload.single('coverImage'), bookValidationRules, async (req, res, next) => {
     //console.log('Request Body:', JSON.stringify(req.body))
     let id = req.body._id
 
@@ -126,7 +107,7 @@ bookController.get('/book/:ID', async (request, response, next) => {
 })
 
 // HTTP DELETE to delete a book by its ID
-bookController.delete('/book/:id', util.logRequest, async (req, res, next) => {
+bookController.delete('/book/:id', util.logRequest, util.authenticateUser, util.authenticateRole('admin'), async (req, res, next) => {
     const bookId = req.params.id
     //console.info(`Deleting Book with ID: ${bookId}`)
     try {

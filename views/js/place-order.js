@@ -20,10 +20,10 @@
         }
 
         let cartHtml = `
-            <section class="h-100 h-custom">
-                <div class="container h-100 py-5">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col">
+            <section class="h-custom">
+                <div class="">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-md-12 col-lg-12">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-stripped">
                                     <thead>
@@ -86,9 +86,9 @@
         return `
             <tr>
                 <th scope="row">
-                    <div class="d-flex align-items-center">
-                        <img src="${item.image}" class="img-fluid rounded-3" style="width: 120px" alt="${item.title}">
-                        <div class="flex-column ms-4">
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <img src="${item.image}" class="img-fluid rounded-3 mb-3 mb-md-0" style="width: 120px" alt="${item.title}">
+                        <div class="flex-column ms-md-4 text-center text-md-start">
                             <p class="mb-2">${item.title}</p>
                             <p class="mb-0">${item.author}</p>
                         </div>

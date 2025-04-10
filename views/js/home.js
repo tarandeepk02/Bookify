@@ -1,6 +1,6 @@
 const loadBooks = async (book, container) => {
   const card = document.createElement("div");
-  card.className = "col-md-3 mb-4";
+  card.className = "col-sm-6 col-lg-3 mb-4";
   const cart = loadCart();
   const isInCart = cart.some(item => item.id === book._id);
 

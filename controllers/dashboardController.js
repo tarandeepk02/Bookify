@@ -8,30 +8,10 @@ const { body, validationResult } = require('express-validator')
 const upload = require('../models/imageUpload')
 const bcrypt = require('bcrypt')
 
-// Authentication & Authorization Middleware
-const authenticateUser = (req, res, next) => {
-    if (req.user == null) {
-        res.status(403)
-        return res.send('You need to be logged in')
-    } else {
-        console.log(req.user)
-    }
-    next()
-}
-const authenticateRole = (role, req, res, next) => {
-    return (req, res, next) => {
-        if (req.user.role == role) {
-            res.status(401)
-            return res.send('Not authorized')
-        }
-
-    }
-}
-
 // --------------------
 // GET User Profile
 // --------------------
-dashboardController.get('/profile', async (request, response, next) => {
+dashboardController.get('/profile',util.authenticateUser, async (request, response, next) => {
     try {
         let id = request.session.user.id
         if (!id) {
@@ -58,7 +38,7 @@ const profileValidationRules = [
 // --------------------
 // POST Update Profile
 // -------------------
-dashboardController.post('/profile', util.logRequest, upload.single('picture'), profileValidationRules, async (request, response, next) => {
+dashboardController.post('/profile', util.logRequest,util.authenticateUser, upload.single('picture'), profileValidationRules, async (request, response, next) => {
 
     try {
         let id = request.session.user.id
@@ -114,7 +94,7 @@ const passwordValidationRules = [
 // --------------------
 // POST Change Password
 // --------------------
-dashboardController.post('/password', util.logRequest, passwordValidationRules, async (request, response, next) => {
+dashboardController.post('/password', util.logRequest,util.authenticateUser, passwordValidationRules, async (request, response, next) => {
     try {
         const { oldPassword, newPassword, confirmPassword } = request.body
         let id = request.session.user.id

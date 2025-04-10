@@ -99,6 +99,28 @@
             });
     }
 
+//-------------------------------------------------------------------------
+
+// Authentication & Authorization Middleware
+const authenticateUser = (req, res, next) => {  
+    if (!req.session || !req.session.user) {
+        return res.status(403).send('You need to be logged in');
+    } else {
+        req.user = req.session.user;
+        next()
+    }
+}
+
+const authenticateRole = (role) => {
+    return (req, res, next) => {
+        if (!req.session || req.session.user.role !== role) {
+            return res.status(401).send('Not authorized')
+        }
+        next()
+    }
+}
+
+
 
 
     //-------------------------------------------------------------------------
@@ -148,6 +170,9 @@
         insertMany: insertMany,
         getMongoClient: getMongoClient,
         updateOne: updateOne,
+
+        authenticateUser: authenticateUser,
+        authenticateRole: authenticateRole,
 
     }
     const moduleExport = util

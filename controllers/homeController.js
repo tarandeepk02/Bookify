@@ -6,6 +6,7 @@ const express = require("express")
 const bcrypt = require('bcrypt')
 const homeController = express.Router()
 const { body, validationResult } = require('express-validator')
+const path = require('path')
 
 homeController.get("/", util.logRequest, (req, res) => {
   res.sendFile("index.html")

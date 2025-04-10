@@ -24,6 +24,8 @@ const dashboardController = require('../controllers/dashboardController')
 const checkoutController = require('../controllers/checkoutController')
 //----------------------------------------------------------------
 
+// Importing getMongoClient from the util.js module
+const { getMongoClient } = require('../models/util.js')
 
 //----------------------------------------------------------------
 // const port = 8080;  // Set port to 8080
@@ -32,20 +34,15 @@ const checkoutController = require('../controllers/checkoutController')
 // });
 // Serve static files (images, CSS, JS) from the 'uploads' folder
 server.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// Example route
-server.get('/photo', (req, res) => {
-  console.log('Requested:', req.originalUrl); // Log the requested URL
-  console.log('Image Path:', path.join(__dirname, 'uploads', '1743750645724.PNG'));
-  res.send('<h1>Image Example</h1><img src="/uploads/1743750645724.PNG" alt="Image" />');
-});
-// setting view
-//server.set('view engine', 'ejs')
 
+//server.set('view engine', 'ejs')
 
 // Session Middleware (Added)
 
 // Initialize the MongoDB session store
-const uri = 'mongodb+srv://taranbenipal02:fNROueEjFXcuET4o@spring2025.wthdnbs.mongodb.net/Bookify?retryWrites=true&w=majority';
+// const uri = 'mongodb+srv://taranbenipal02:fNROueEjFXcuET4o@spring2025.wthdnbs.mongodb.net/Bookify?retryWrites=true&w=majority';
+
+const uri = util.getMongoClient(false).s.url
 
 const mongoSessionStore = MongoDBStore.create({
   mongoUrl: uri, // Replace with your MongoDB connection string
@@ -106,10 +103,29 @@ server.get('/logs', async (req, res, next) => {
   util.logRequest(req, res, next)
 })
 // catch all middleware
+
+
+server.use((err, req, res, next) => {
+  if (err.status === 403) {
+      // For 403 Forbidden, redirect to a specific "Forbidden" page
+      return res.redirect('/forbidden.html');
+  }
+
+  if (err.status === 401) {
+      // For 401 Unauthorized, redirect to a login page
+      return res.redirect('/login.html');
+  }
+
+  // For other errors, pass to the default error handler
+  next(err);
+});
+
+
 server.use((req, res, next) => {
   //res.status(404).sendFile('404.html',{root:config.ROOT})
   res.status(404).sendFile('404.html', { root: config.ROOT })
 })
+
 server.listen(config.PORT, "localhost", () => {
   console.log(`\t|Server listening on ${config.PORT}`)
 })

@@ -1,5 +1,4 @@
-//Create immediately invoked function
-
+// Create immediately invoked function
 (() => {
     const Order = (userId, userRole, name,email,shippingAddress,subtotal,shipping,total,cart) => {
         return {
@@ -10,14 +9,10 @@
             shippingAddress: shippingAddress,
             subtotal: subtotal,
             shipping: shipping,
-            total: total,
-            
+            total: total,            
             cart: cart,
             since: new Date().toUTCString()
         }
     }
     module.exports = Order
 })()
-
-
-
