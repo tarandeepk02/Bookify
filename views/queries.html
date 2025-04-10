@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookify :: My Orders</title>
+    <link rel="stylesheet" href="css/journal.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+</head>
+
+<body>
+    <div id="top"></div>
+
+    <main role="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 mt-lg-0" id="sidebar">
+                    <!-- Sidebar will be injected via partials.js -->
+                </div>
+
+                <div class="col-lg-10">
+                    <div class="mt-5">
+                        <h4>Customer Queries</h4>
+                        <table class="table table-bordered mt-3">
+                            <thead class="thead-dark">
+                                <tr id="queryTableHeader">
+                                    <!-- Will be set dynamically in orders.js -->
+                                </tr>
+                            </thead>
+                            <tbody id="queryTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="bottom"></div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/partials.js"></script>
+    <script src="js/queries.js"></script>
+</body>
+
+</html>

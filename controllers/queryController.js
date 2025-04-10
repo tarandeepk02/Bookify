@@ -33,8 +33,8 @@ queryController.post("/addQuery", util.logRequest, contactFormValidationRules, a
     }
 
     let collection = client.db().collection("Queries")
-    let { email, name, phone } = req.body
-    let query = Query(name, email, phone)
+    let { email, name, phone, yourMessage } = req.body
+    let query = Query(name, email, phone, yourMessage)
 
     util.insertOne(collection, query)
     res.status(200)
