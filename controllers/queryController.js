@@ -18,11 +18,6 @@ const contactFormValidationRules = [
 
 queryController.post("/addQuery", util.logRequest, contactFormValidationRules, async (req, res, next) => {
 
-
-
-
-
-
   try {
     const errors = validationResult(req)
 

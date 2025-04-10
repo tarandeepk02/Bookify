@@ -3,7 +3,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     await new Promise((resolve) => setTimeout(resolve, 500)); // Adjust delay as needed
 
     try {
-        // 1. Fetch user role
         const sessionRes = await fetch("/session-info");
         const sessionData = await sessionRes.json();
 
@@ -11,16 +10,12 @@ window.addEventListener("DOMContentLoaded", async () => {
             alert("You must be logged in to view queries.");
             return;
         }
-
         const userRole = sessionData.user.role;
-        const fetchUrl = userRole === "admin" ? "/queries" : "/forbidden";
+        const fetchUrl = "/queries";
 
-        // 2. Fetch orders
+       
         const res = await fetch(fetchUrl);
         const data = await res.json();
-
-
-        //console.log("data="+JSON.stringify(data));
 
         if (data.status === 200) {
             const queries = data.queries;
@@ -29,8 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             // Dynamically set the table headers
             const headerRow = document.getElementById("queryTableHeader");
             if (headerRow) {
-                headerRow.innerHTML = `
-      
+                headerRow.innerHTML = `      
       <th>Query Date</th>
       <th>Name</th>
       <th>Email</th>
