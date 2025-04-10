@@ -2,37 +2,21 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
 
     <div class="container">
-      <a class="navbar-brand" href="index.html"
-        ><img
-          src="img/logo.png"
-          class="img-responsive rrounded"
-          alt="Bootstrap Logo"
-          height="50"
-      /></a>
+      <a class="navbar-brand" href="index.html"><img src="img/logo.png" class="img-responsive rrounded"
+          alt="Bootstrap Logo" height="50" /></a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto me-1 mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html"
-              >Home</a
-            >
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="about.html"
-              >About Us</a
-            >
+            <a class="nav-link" aria-current="page" href="about.html">About Us</a>
           </li>
 
           <li class="nav-item">
@@ -44,78 +28,65 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="contact-us.html"
-              >Contact Us</a
-            >
+            <a class="nav-link" aria-current="page" href="contact-us.html">Contact Us</a>
           </li>
 
           <li class="nav-item dropdown" id="cart-btn">
-            <a class="btn btn-outline-dark mt-1 position-relative me-3" href="place-order.html" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-outline-dark mt-1 position-relative me-3" href="place-order.html" id="cartDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-handbag-fill"></i>
-              <span id="cart-counter" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" style="font-size: 12px;padding: 6px 8px;">
+              <span id="cart-counter"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
+                style="font-size: 12px;padding: 6px 8px;">
                 0
               </span>
             </a>
-            <ul id="cart-items-list" class="dropdown-menu dropdown-menu-end p-3 cart-items-list" aria-labelledby="cartDropdown" style="min-width: 400px;">
-              
+            <ul id="cart-items-list" class="dropdown-menu dropdown-menu-end p-3 cart-items-list"
+              aria-labelledby="cartDropdown" style="min-width: 400px;">
+
             </ul>
           </li>
-          
+
 
           <li class="nav-item dropdown" id="dashboard-btn">
-              <a class="btn btn-dark mt-1 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                My Dashboard
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                
-                  <li class="dashboardLink">
-                    <a class="dropdown-item" href="">Dashboard</a>
-                  </li>
+            <a class="btn btn-dark mt-1 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              My Dashboard
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                  <li>
-                    <a class="dropdown-item" href="profile.html">Profile</a>
-                  </li>
+              <li class="dashboardLink">
+                <a class="dropdown-item" href="">Dashboard</a>
+              </li>
 
-                  <li>
-                    <a class="dropdown-item" href="password.html">Security</a>
-                  </li>           
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                    <a class="dropdown-item" href="/logout">Logout</a>
-                  </li>
+              <li>
+                <a class="dropdown-item" href="profile.html">Profile</a>
+              </li>
 
-              </ul>
-            </li> 
+              <li>
+                <a class="dropdown-item" href="password.html">Security</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </li>
+
+            </ul>
+          </li>
         </ul>
 
-        <div
-          class="btn-group"
-          role="group"
-          aria-label="Registration and Login"
-          id="auth-buttons"
-        >
-          <button
-            class="btn btn-outline-dark"
-            id="register"
-            data-bs-toggle="modal"
-            data-bs-target="#registerModal"
-          >
+        <div class="btn-group" role="group" aria-label="Registration and Login" id="auth-buttons">
+          <button class="btn btn-outline-dark" id="register" data-bs-toggle="modal" data-bs-target="#registerModal">
             Register
-          </button><button
-            class="btn btn-dark"
-            id="login"
-            data-bs-toggle="modal"
-            data-bs-target="#loginModal"
-          >
+          </button><button class="btn btn-dark" id="login" data-bs-toggle="modal" data-bs-target="#loginModal">
             Log in
           </button>
         </div>
 
 
-        
+
 
 
       </div>
