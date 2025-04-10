@@ -22,6 +22,7 @@ const userController = require('../controllers/userController')
 const bookController = require('../controllers/bookController')
 const dashboardController = require('../controllers/dashboardController')
 const checkoutController = require('../controllers/checkoutController')
+const queryController = require('../controllers/queryController')
 //----------------------------------------------------------------
 
 // Importing getMongoClient from the util.js module
@@ -40,8 +41,6 @@ server.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Session Middleware (Added)
 
 // Initialize the MongoDB session store
-// const uri = 'mongodb+srv://taranbenipal02:fNROueEjFXcuET4o@spring2025.wthdnbs.mongodb.net/Bookify?retryWrites=true&w=majority';
-
 const uri = util.getMongoClient(false).s.url
 
 const mongoSessionStore = MongoDBStore.create({
@@ -99,6 +98,7 @@ server.use(userController)
 server.use(bookController)
 server.use(dashboardController)
 server.use(checkoutController)
+server.use(queryController)
 server.get('/logs', async (req, res, next) => {
   util.logRequest(req, res, next)
 })
