@@ -22,6 +22,7 @@ const userController = require('../controllers/userController')
 const bookController = require('../controllers/bookController')
 const dashboardController = require('../controllers/dashboardController')
 const checkoutController = require('../controllers/checkoutController')
+const queryController = require('../controllers/queryController')
 //----------------------------------------------------------------
 
 // Importing getMongoClient from the util.js module
@@ -99,6 +100,7 @@ server.use(userController)
 server.use(bookController)
 server.use(dashboardController)
 server.use(checkoutController)
+server.use(queryController)
 server.get('/logs', async (req, res, next) => {
   util.logRequest(req, res, next)
 })
