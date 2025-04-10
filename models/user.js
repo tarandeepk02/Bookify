@@ -1,5 +1,5 @@
 (() => {
-    const User = (name,email, hashed,picture) => {
+    const User = (name, email, hashed, picture) => {
         const Role = {
             ADMIN: 'admin',
             MEMBER: 'member',

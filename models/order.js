@@ -1,6 +1,6 @@
 // Create immediately invoked function
 (() => {
-    const Order = (userId, userRole, name,email,shippingAddress,subtotal,shipping,total,cart) => {
+    const Order = (userId, userRole, name, email, shippingAddress, subtotal, shipping, total, cart) => {
         return {
             userId: userId,
             userRole: userRole,
@@ -9,7 +9,7 @@
             shippingAddress: shippingAddress,
             subtotal: subtotal,
             shipping: shipping,
-            total: total,            
+            total: total,
             cart: cart,
             since: new Date().toUTCString()
         }

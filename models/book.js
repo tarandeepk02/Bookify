@@ -1,7 +1,7 @@
 //Create immediately invoked function
 
 (() => {
-    const Book = (title, authors, isbn,publisher,publishedDate,genre,description,coverImage,price,rating) => {
+    const Book = (title, authors, isbn, publisher, publishedDate, genre, description, coverImage, price, rating) => {
         return {
             title: title,
             authors: authors,
