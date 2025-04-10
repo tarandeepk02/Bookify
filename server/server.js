@@ -41,8 +41,6 @@ server.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Session Middleware (Added)
 
 // Initialize the MongoDB session store
-// const uri = 'mongodb+srv://taranbenipal02:fNROueEjFXcuET4o@spring2025.wthdnbs.mongodb.net/Bookify?retryWrites=true&w=majority';
-
 const uri = util.getMongoClient(false).s.url
 
 const mongoSessionStore = MongoDBStore.create({
