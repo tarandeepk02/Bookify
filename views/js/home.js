@@ -35,7 +35,9 @@ const loadGoogleBooksCarousel = async () => {
     const container = document.getElementById("googleBooksInner");
     container.innerHTML = "";
 
-    const cardsPerSlide = 3;
+    const isMobile = window.innerWidth <= 768;
+    const cardsPerSlide = isMobile ? 1 : 3;
+
 
     for (let i = 0; i < books.length; i += cardsPerSlide) {
       const item = document.createElement("div");
@@ -263,6 +265,10 @@ const updateCartUIHandler = async () => {
 document.addEventListener("DOMContentLoaded", async () => {
   await loadBooksData();
   updateCartUIHandler();
+
+  window.addEventListener("resize", () => {
+    loadGoogleBooksCarousel(); // 화면 크기 바뀔 때 캐러셀 다시 로드
+  });
 
   document.body.addEventListener('click', (event) => {
     if (event.target && event.target.id === 'checkout') {
