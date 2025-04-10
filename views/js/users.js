@@ -117,14 +117,13 @@
         }
         else if (key == 'picture') {
           let valueImg
-          if(value!='' && value!=null)
-          {
+          if (value != '' && value != null) {
             valueImg = value
           }
-          else{
+          else {
             valueImg = 'https://placehold.co/100x100'
           }
-          value = '<img src="'+valueImg+'" width="100" height="100">'
+          value = '<img src="' + valueImg + '" width="100" height="100">'
         }
         cardContent += `
             <p class="card-text">

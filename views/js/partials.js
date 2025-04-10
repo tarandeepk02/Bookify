@@ -119,9 +119,9 @@
 
   const checkSession = async () => {
     let response = await fetch("/session-info", {
-      method: "GET", 
+      method: "GET",
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
       },
     })
     let data = await response.json()
@@ -172,13 +172,13 @@
     document.querySelector("#top").innerHTML = headerContent
 
     // adding-top (as much as the header height)
-    document.body.style.paddingTop = "80px"   
-    
+    document.body.style.paddingTop = "80px"
+
     //console.log("Current Page:", pageName)
     if (pageName == 'index.html' || pageName == 'about.html' || pageName == 'bookify-books.html' || pageName == 'google-books.html' || pageName == 'contact.html') {
       document.getElementById('cart-btn').style.display = 'block'
     }
-    else{
+    else {
       document.getElementById('cart-btn').style.display = 'none'
     }
 
@@ -192,14 +192,15 @@
       if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
       }
-    }, 100);  }
+    }, 100);
+  }
 
   window.addEventListener('load', () => {
 
     loadHeaderFooter().then(() => {
 
       checkSession()
-      
+
       document.querySelector("#registerForm").addEventListener("submit", register)
       document.querySelector("#loginForm").addEventListener("submit", login)
 

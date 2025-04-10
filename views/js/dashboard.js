@@ -114,7 +114,7 @@
 
         let oldPassword = document.querySelector("#oldPassword").value
         let newPassword = document.querySelector("#newPassword").value
-        let confirmPassword = document.querySelector("#confirmPassword").value       
+        let confirmPassword = document.querySelector("#confirmPassword").value
 
 
         try {
@@ -167,6 +167,6 @@
     window.onload = () => {
         displayProfile()
         document.querySelector("#passwordForm")?.addEventListener("submit", updatePassword)
-        document.querySelector("#profileForm")?.addEventListener("submit", updateProfile)        
+        document.querySelector("#profileForm")?.addEventListener("submit", updateProfile)
     }
 })()
