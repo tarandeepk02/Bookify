@@ -27,16 +27,16 @@ checkoutController.post('/checkout', util.logRequest, orderValidationRules, asyn
     }
     const userId = req.session && req.session.user ? req.session.user.id : ''
     const userRole = req.session && req.session.user ? 'member' : 'guest'
-    const { checkoutName, checkoutEmail, shippingAddress, subtotal, shipping, total, cart,since } = req.body
+    const { checkoutName, checkoutEmail, shippingAddress, subtotal, shipping, total, cart, since } = req.body
 
     try {
         if (userRole == 'guest') {
             let collectionUser = client.db().collection('Users')
-            let user = { name: checkoutName, email: checkoutEmail, role: "guest",since }
+            let user = { name: checkoutName, email: checkoutEmail, role: "guest", since }
             await util.insertOne(collectionUser, user)
         }
         let collection = client.db().collection('Orders')
-        let order = { userId, userRole, checkoutName, checkoutEmail, shippingAddress, subtotal, shipping, total, cart,since }
+        let order = { userId, userRole, checkoutName, checkoutEmail, shippingAddress, subtotal, shipping, total, cart, since }
 
         await util.insertOne(collection, order)
 
@@ -47,7 +47,7 @@ checkoutController.post('/checkout', util.logRequest, orderValidationRules, asyn
     }
 })
 
-checkoutController.get('/orders',util.authenticateUser, async (req, res, next) => {
+checkoutController.get('/orders', util.authenticateUser, async (req, res, next) => {
     try {
         const userId = req.session?.user?.id
         if (!userId) {
@@ -81,7 +81,7 @@ checkoutController.get('/orders/all', util.authenticateUser, util.authenticateRo
     }
 })
 
-checkoutController.get('/orders/:id',util.authenticateUser, async (req, res, next) => {
+checkoutController.get('/orders/:id', util.authenticateUser, async (req, res, next) => {
     try {
         const orderId = req.params.id
         if (!ObjectId.isValid(orderId)) {

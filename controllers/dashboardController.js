@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt')
 // --------------------
 // GET User Profile
 // --------------------
-dashboardController.get('/profile',util.authenticateUser, async (request, response, next) => {
+dashboardController.get('/profile', util.authenticateUser, async (request, response, next) => {
     try {
         let id = request.session.user.id
         if (!id) {
@@ -38,7 +38,7 @@ const profileValidationRules = [
 // --------------------
 // POST Update Profile
 // -------------------
-dashboardController.post('/profile', util.logRequest,util.authenticateUser, upload.single('picture'), profileValidationRules, async (request, response, next) => {
+dashboardController.post('/profile', util.logRequest, util.authenticateUser, upload.single('picture'), profileValidationRules, async (request, response, next) => {
 
     try {
         let id = request.session.user.id
@@ -55,7 +55,7 @@ dashboardController.post('/profile', util.logRequest,util.authenticateUser, uplo
 
         const { name } = request.body
         const picture = request.file ? '/uploads/' + request.file.filename : request.session.user.picture
-        const collection = client.db().collection('Users')       
+        const collection = client.db().collection('Users')
 
         const result = await util.updateOne(collection,
             { _id: new ObjectId(id) },
@@ -94,7 +94,7 @@ const passwordValidationRules = [
 // --------------------
 // POST Change Password
 // --------------------
-dashboardController.post('/password', util.logRequest,util.authenticateUser, passwordValidationRules, async (request, response, next) => {
+dashboardController.post('/password', util.logRequest, util.authenticateUser, passwordValidationRules, async (request, response, next) => {
     try {
         const { oldPassword, newPassword, confirmPassword } = request.body
         let id = request.session.user.id
@@ -120,7 +120,7 @@ dashboardController.post('/password', util.logRequest,util.authenticateUser, pas
             response.status(400).json({ status: 400, error: 'Old password is incorrect' })
         }
 
-        const hashedNewPassword = await bcrypt.hash(newPassword, 10)        
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10)
 
         const result = await util.updateOne(collection,
             { _id: new ObjectId(id) },

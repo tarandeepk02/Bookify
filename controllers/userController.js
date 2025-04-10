@@ -26,14 +26,14 @@ const authenticateRole = (role, req, res, next) => {
 }
 
 // HTTP GET to fetch all users
-userController.get('/users', util.logRequest,util.authenticateUser, util.authenticateRole('admin'), async (req, res, next) => {
+userController.get('/users', util.logRequest, util.authenticateUser, util.authenticateRole('admin'), async (req, res, next) => {
     let collection = client.db().collection('Users')
     let Users = await util.findAll(collection, {})
     res.status(200).json(Users)
 })
 
 // HTTP GET to fetch a single user by their ID
-userController.get('/user/:ID',util.authenticateUser, util.authenticateRole('admin'), async (request, response, next) => {
+userController.get('/user/:ID', util.authenticateUser, util.authenticateRole('admin'), async (request, response, next) => {
     let id = request.params.ID
     console.info(`User Id ${id}`)
     let collection = client.db().collection('Users')
@@ -44,7 +44,7 @@ userController.get('/user/:ID',util.authenticateUser, util.authenticateRole('adm
 })
 
 // HTTP DELETE to delete a user by their ID
-userController.delete('/user/:id', util.logRequest,util.authenticateUser, util.authenticateRole('admin'), async (req, res, next) => {
+userController.delete('/user/:id', util.logRequest, util.authenticateUser, util.authenticateRole('admin'), async (req, res, next) => {
     const userId = req.params.id;
     //console.info(`Deleting user with ID: ${userId}`)    
     try {
